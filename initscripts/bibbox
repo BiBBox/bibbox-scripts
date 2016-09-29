@@ -10,8 +10,8 @@ updaterepository() {
     cd "$bibboxdir/$bibboxscriptfolder"
     echo -n "  bibbox-scripts: "
     git pull
-    cd "$bibboxdir/$bibboxdockertoolsfolder"
-    echo -n "  docker-tools: "
+    cd "$bibboxdir/$bibboxapplicationstorefolder"
+    echo -n "  application-store: "
     git pull
   fi
 }
