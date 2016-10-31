@@ -12,8 +12,8 @@ Config Script for the BIBBOX-VM
 
 
 ###start.sh:
-Script to be executed at '/etc/init.d/bibbox' start service
+Script to be executed at `/etc/init.d/bibbox` start service
 
 
 ###apacheServiceListener.sh:
-Script to listen on cahnges in the '/etc/apache2/sites-enabled' folder to relaod the service when somthing changed.
+Script to listen on cahnges in the `/etc/apache2/sites-enabled` folder to relaod the service when somthing changed.
