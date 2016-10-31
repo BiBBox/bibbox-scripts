@@ -1,3 +1,7 @@
-#! /bin/sh
+#! /bin/bash
 
-echo "start.sh"
+echo "Start BIBBOX-VM Services"
+
+# Start Folder listener to restart apache2 when new config added
+. apacheServiceListener.sh &
+
