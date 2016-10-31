@@ -18,7 +18,7 @@ updaterepository() {
 
 updateexecute() {
   cd "$bibboxdir/$bibboxscriptfolder"
-  chmod -R a+x
+  chmod -R a+x "$bibboxdir/$bibboxscriptfolder"
 }
 
 # Carry out specific functions when asked to by the system
