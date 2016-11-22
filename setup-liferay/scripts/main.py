@@ -21,9 +21,10 @@ print ("BIBBOX PI has role ID:",  roleIds['Bibbox PI'])
 
 
 api = jsonws.API()
-r = api.call("GET", "user/get-company-users", {'companyId':'20116', 'start':"0", 'end':'100'})
 
+r = api.call("GET", "user/get-company-users", {'companyId':'20116', 'start':"0", 'end':'100'})
 
 users = json.loads(r.text)
 for u  in users:
-    print (u['screenName'], "with last name",  u['lastName'], "has ID", u['userId'])
+    print (u['screenName'], "(" +  u['firstName'] +"," + u['lastName']+")", "has ID", u['userId'])
+
