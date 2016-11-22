@@ -11,6 +11,9 @@ class Roles:
         self.companyId = companyId
         api = jsonws.API()
         r = api.call("GET", "role/get-roles", {'companyId': self.companyId, 'types': '1'})
+
+#        print (r.text)
+
         roles = json.loads(r.text)
         for rx in roles:
             self.allRoles[rx['name']] = rx['roleId']

@@ -10,7 +10,7 @@ class API:
         self.auth = ('bibboxadmin', 'bibbox2016')
 
     def call (self, method, command, param):
-        apiURL = "http://development.bibbox.org/api/jsonws/" + command
+        apiURL = "http://demo.bibbox.org/api/jsonws/" + command
         l = len(param)
         apiURL = apiURL + "." + str(l)
         for k in param.keys():

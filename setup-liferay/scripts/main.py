@@ -16,11 +16,13 @@ roleIds = roleService.rolesIds()
 for k in roleIds:
     print ("Role", k, "has ID", roleIds[k])
 
-print ("============================")
+print ("=====  SET UP OF LIFERAY  ====")
 print ("BIBBOX PI has role ID:",  roleIds['Bibbox PI'])
+
 
 api = jsonws.API()
 r = api.call("GET", "user/get-company-users", {'companyId':'20116', 'start':"0", 'end':'100'})
+
 
 users = json.loads(r.text)
 for u  in users:
