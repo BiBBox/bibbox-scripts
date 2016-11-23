@@ -16,6 +16,8 @@ class Roles:
 
         roles = json.loads(r.text)
         for rx in roles:
+
+            print (rx['uuid'])
             self.allRoles[rx['name']] = rx['roleId']
         print (self.allRoles)
 
