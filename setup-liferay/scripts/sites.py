@@ -12,7 +12,7 @@ class Sites:
         self.companyId = companyId
 
         api = jsonws.API()
-        r = api.call("GET", "/group/get-groups", {'companyId': self.companyId, 'parentGroupId': '0', 'site':'true'})
+        r = api.call("/group/get-groups", {'companyId': self.companyId, 'parentGroupId': '0', 'site':'true'})
         print(r.url)
         print (r.text)
         groups = json.loads(r.text)
@@ -22,7 +22,7 @@ class Sites:
 
         print("GROUP ID = ", self.groupID )
 
-        r = api.call("GET", "/layout/get-layouts", {'groupId': self.groupID, 'privateLayout': 'false'})
+        r = api.call("/layout/get-layouts", {'groupId': self.groupID, 'privateLayout': 'false'})
         print (r.text)
         sites = json.loads(r.text)
 
@@ -54,7 +54,7 @@ class Sites:
                      'hidden' : 'false',
                      'friendlyURL' : '/instances' }
 
-            r = api.call ("POST", "/layout/add-layout", param)
+            r = api.call ("/layout/add-layout", param)
             site = json.loads(r.text)
             layoutID = site['layoutId']
             print("SITES GENERATED WITH", site['layoutId'])
@@ -64,5 +64,6 @@ class Sites:
                  'layoutId': layoutID,
                  'typeSettings': 'column-1=bibboxjscontainer_WAR_BIBBOXDockerportlet\nlayout-template-id=1_column'}
 
-            r = api.call("POST", "/layout/update-layout", param)
+            r = api.call("/layout/update-layout", param)
 
+            # set the correct permisions

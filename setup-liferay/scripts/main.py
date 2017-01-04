@@ -8,11 +8,13 @@ import sites
 import roles
 import users
 
-print ("SCRIPT STARTED")
+print ("SETUP SCRIPT FOT eB3KIT BIBBOX DEMO")
 
 siteService = sites.Sites(companyId = '20116')
 siteService.initSites()
 
+userService = users.Users (companyId = '20116')
+userService.initUsers()
 
 
 #roleService = roles.Roles(companyId = '20116')
@@ -24,8 +26,6 @@ siteService.initSites()
 #    print ("Role", k, "has ID", roleIds[k])
 
 
-#userService = users.Users (companyId = '20116')
-#userService.initUsers()
 
 api = jsonws.API()
 

@@ -1,5 +1,6 @@
 import json
 import urllib
+import base64
 
 import requests
 import jsonws
@@ -14,7 +15,7 @@ class Users:
         self.companyId = companyId
 
         api = jsonws.API()
-        r = api.call("GET", "user/get-company-users", {'companyId': self.companyId, 'start':"0", 'end':'1000'})
+        r = api.call("/user/get-company-users", {'companyId': self.companyId, 'start':"0", 'end':'1000'})
         users = json.loads(r.text)
         for ux in users:
             self.allUsers[ux['screenName']] = ux['userId']
@@ -25,11 +26,14 @@ class Users:
 
     def description(self, screenName):
         api = jsonws.API()
-        return api.call("GET", "user/get-user-by-screen-name", {'companyId': self.companyId, 'screenName': screenName})
+        return api.call("/user/get-user-by-screen-name", {'companyId': self.companyId, 'screenName': screenName})
 
 
     def initUsers(self):
+
         api = jsonws.API()
+
+        print("FIRST GENERATE THE ROLES")
 
         roleService = roles.Roles(companyId='20116')
         roleService.initRoles()
@@ -40,75 +44,187 @@ class Users:
         if 'bibboxadmin' not in screenNames:
             print("CREATE BIBBOX VM ADMIN USER")
 
+            param =  {
+                "companyId":  self.companyId,
+                "autoPassword": False,
+                "password1": "graz2017",
+                "password2": "graz2017",
+                "autoScreenName": False,
+                "screenName": "bibboxadmin",
+                "emailAddress": "bibboxadmin@bibbox.org",
+                "facebookId": 0,
+                "openId": "",
+                "locale": "en_US",
+                "firstName": "Roxana",
+                "middleName": "",
+                "lastName": "Rilling",
+                "prefixId": 0,
+                "suffixId": 0,
+                "male": False,
+                "birthdayMonth": 1,
+                "birthdayDay": 1,
+                "birthdayYear": 1970,
+                "jobTitle": "Responsible for the installation of the BIBBOX VM and liferay sys admin",
+                "groupIds": None,
+                "organizationIds": None,
+                "roleIds": [roleIds['BIBBOX VM Admin'], roleIds['Administrator']],
+                "userGroupIds": None,
+                "sendEmail": False,
+                "serviceContext": {"assetTagNames": ["bibboxadmin"]}
+            }
+            r = api.call("/user/add-user", param )
+            user =  json.loads(r.text)
+            print(user)
 
-"""
-        roleNames = self.allRoles.keys()
+            with open('avatar-pics/roxana.jpg', 'rb') as f:
+                picdata = f.read()
 
-        if 'Bibbox Operator' not in roleNames:
-            print("CREATE BIBBOX OPERATOR")
-            title = {'en_US': 'Bibbox Operator'}
-            desc = {
-                'en_US': 'The BIBBOX operator role is intended for users with are operators of installed applications'}
+            base64_bytes  = base64.b64encode(picdata)
+            base64_string = base64_bytes.decode('utf-8')
 
-            param = {'class-name': 'com.liferay.portal.kernel.model.Role', 'class-pk': '0', 'name': 'Bibbox Operator',
-                     'title-map': title, 'description-map': desc, 'type': '1', 'subtype': None}
-
-            r = api.call ("POST", "role/add-role", param)
-
+            param = {
+                "userId": user['userId'],
+                "bytes": base64_string,
+            }
+            #r = api.call("/user/update-portrait", param)
             print(r.text)
-#           operatorRole = json.loads(r.text)['roleId']
-#           print(operatorRole)
 
-        if 'Bibbox Admin' not in roleNames:
-            print("CREATE BIBBOX ADMINISTRATOR")
-            title = {'en_US': 'Bibbox Admin'}
-            desc = {
-                'en_US': 'The BIBBOX administrator role is intended for the admin, who can install, configure and delete applications.'}
-            param = {'class-name': 'com.liferay.portal.kernel.model.Role', 'class-pk': '0', 'name': 'Bibbox Admin',
-                     'title-map': title, 'description-map': desc, 'type': '1', 'subtype': None}
-            r = api.call ("POST", "role/add-role", param)
 
- #           print(r.text)
- #           adminRole = json.loads(r.text)['roleId']
- #           print(adminRole)
+        if 'admin' not in screenNames:
+            print("CREATE BIBBOX  ADMIN USER")
 
-        if 'Bibbox VM Admin' not in roleNames:
-            print("CREATE BIBBOX VM ADMINISTRATOR")
-            title = {'en_US': 'Bibbox VM Admin'}
-            desc = {
-                'en_US': 'The BIBBOX VM administrator role is intended for the administration of the virtual machine and liferay.'}
-            param = {'class-name': 'com.liferay.portal.kernel.model.Role', 'class-pk': '0', 'name': 'Bibbox VM Admin',
-                     'title-map': title, 'description-map': desc, 'type': '1', 'subtype': None}
-            r = api.call ("POST", "role/add-role", param)
-  #          print(r.text)
-  #          vmadminRole = json.loads(r.text)['roleId']
-  #          print(vmadminRole)
+            param = {
+                "companyId": self.companyId,
+                "autoPassword": False,
+                "password1": "graz2017",
+                "password2": "graz2017",
+                "autoScreenName": False,
+                "screenName": "admin",
+                "emailAddress": "admin@bibbox.org",
+                "facebookId": 0,
+                "openId": "",
+                "locale": "en_US",
+                "firstName": "Alan",
+                "middleName": "",
+                "lastName": "Punter",
+                "prefixId": 0,
+                "suffixId": 0,
+                "male": True,
+                "birthdayMonth": 1,
+                "birthdayDay": 1,
+                "birthdayYear": 1970,
+                "jobTitle": "Admin of the BIBBOX installation",
+                "groupIds": None,
+                "organizationIds": None,
+                "roleIds": roleIds['BIBBOX Admin'],
+                "userGroupIds": None,
+                "sendEmail": False,
+                "serviceContext": {"assetTagNames": ["admin"]}
+            }
 
-        if 'Bibbox PI' not in roleNames:
-            print("CREATE BIBBOX PI")
-            title = {'en_US': 'Bibbox PI'}
-            desc = {'en_US': 'The BIBBOX PI role is intended for management of all application metadata.'}
-            param = {'class-name': 'com.liferay.portal.kernel.model.Role', 'class-pk': '0', 'name': 'Bibbox PI',
-                     'title-map': title, 'description-map': desc, 'type': '1', 'subtype': None}
-            r = api.call ("POST", "role/add-role", param)
-  #         print(r.text)
-  #         piRole = json.loads(r.text)['roleId']
-  #          print(piRole)
+            r = api.call("/user/add-user", param)
+            print (r.text)
 
-        if 'Bibbox Curator' not in roleNames:
-            print("CREATE BIBBOX CURATOR")
-            title = {'en_US': 'Bibbox Curator'}
-            desc = {'en_US': 'The BIBBOX curator role is intended for management of all application metadata.'}
-            param = {'class-name': 'com.liferay.portal.kernel.model.Role', 'class-pk': '0', 'name': 'Bibbox Curator',
-                     'title-map': title, 'description-map': desc, 'type': '1', 'subtype': None}
-            r = api.call("POST", "role/add-role", param)
-#            print(r.text)
-#            curatorRole = json.loads(r.text)['roleId']
-#            print(curatorRole)
 
-        r = api.call("GET", "role/get-roles", {'companyId': self.companyId, 'types': '1'})
-        self.allRoles = {}
-        roles = json.loads(r.text)
-        for rx in roles:
-            self.allRoles [rx['name']] = rx['roleId']
-"""
+        if 'pi' not in screenNames:
+                print("CREATE BIBBOX PI USER")
+
+                param = {
+                    "companyId": self.companyId,
+                    "autoPassword": False,
+                    "password1": "graz2017",
+                    "password2": "graz2017",
+                    "autoScreenName": False,
+                    "screenName": "pi",
+                    "emailAddress": "pi@bibbox.org",
+                    "facebookId": 0,
+                    "openId": "",
+                    "locale": "en_US",
+                    "firstName": "Majmuna",
+                    "middleName": "",
+                    "lastName": "Sandu",
+                    "prefixId": 0,
+                    "suffixId": 0,
+                    "male": False,
+                    "birthdayMonth": 1,
+                    "birthdayDay": 1,
+                    "birthdayYear": 1970,
+                    "jobTitle": "BIBBOX PI",
+                    "groupIds": None,
+                    "organizationIds": None,
+                    "roleIds": roleIds['BIBBOX PI'],
+                    "userGroupIds": None,
+                    "sendEmail": False,
+                    "serviceContext": {"assetTagNames": ["admin"]}
+                }
+                r = api.call("/user/add-user", param)
+                print (r.text)
+
+        if 'curator' not in screenNames:
+                print("CREATE BIBBOX PI USER")
+
+                param = {
+                    "companyId": self.companyId,
+                    "autoPassword": False,
+                    "password1": "graz2017",
+                    "password2": "graz2017",
+                    "autoScreenName": False,
+                    "screenName": "curator",
+                    "emailAddress": "curator@bibbox.org",
+                    "facebookId": 0,
+                    "openId": "",
+                    "locale": "en_US",
+                    "firstName": "Santa",
+                    "middleName": "",
+                    "lastName": "Morello",
+                    "prefixId": 0,
+                    "suffixId": 0,
+                    "male": False,
+                    "birthdayMonth": 1,
+                    "birthdayDay": 1,
+                    "birthdayYear": 1970,
+                    "jobTitle": "BIBBOX Curator",
+                    "groupIds": None,
+                    "organizationIds": None,
+                    "roleIds": roleIds['BIBBOX Curator'],
+                    "userGroupIds": None,
+                    "sendEmail": False,
+                    "serviceContext": {"assetTagNames": ["curator"]}
+                }
+                r = api.call("/user/add-user", param)
+                print(r.text)
+
+
+        if 'operator' not in screenNames:
+            print("CREATE BIBBOX PI USER")
+
+            param = {
+                "companyId": self.companyId,
+                "autoPassword": False,
+                "password1": "graz2017",
+                "password2": "graz2017",
+                "autoScreenName": False,
+                "screenName": "operator",
+                "emailAddress": "operator@bibbox.org",
+                "facebookId": 0,
+                "openId": "",
+                "locale": "en_US",
+                "firstName": "Carmen",
+                "middleName": "",
+                "lastName": "Thatcher",
+                "prefixId": 0,
+                "suffixId": 0,
+                "male": False,
+                "birthdayMonth": 1,
+                "birthdayDay": 1,
+                "birthdayYear": 1970,
+                "jobTitle": "BIBBOX Operator",
+                "groupIds": None,
+                "organizationIds": None,
+                "roleIds": roleIds['BIBBOX Operator'],
+                "userGroupIds": None,
+                "sendEmail": False,
+                "serviceContext": {"assetTagNames": ["operator"]}
+            }
+            r = api.call("/user/add-user", param)
+            print(r.text)

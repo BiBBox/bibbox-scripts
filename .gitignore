@@ -1,2 +1,11 @@
 *.pyc
 .idea
+*.pyc
+
+*.pyc
+
+*.pyc
+
+setup-liferay/scripts/__pycache__/jsonws.cpython-35.pyc
+
+*.pyc

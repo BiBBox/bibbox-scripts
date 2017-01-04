@@ -10,7 +10,7 @@ class API:
         self.auth = ('test@liferay.com', 'test')
 #        self.auth = ('bibboxadmin', 'bibbox2016')
 
-    def call (self, method, command, param):
+    def call (self, command, param):
 
         invokeURL = "http://development.bibbox.org/api/jsonws/invoke"
         headers = {
