@@ -10,10 +10,8 @@ class Roles:
         self.allRoles = {}
         self.companyId = companyId
         api = jsonws.API()
-        r = api.call("GET", "role/get-roles", {'companyId': self.companyId, 'types': '1'})
-
+        r = api.call("GET", "/role/get-roles", {'companyId': self.companyId, 'types': '1'})
 #        print (r.text)
-
         roles = json.loads(r.text)
         for rx in roles:
 
@@ -26,7 +24,7 @@ class Roles:
 
     def description(self, roleId):
         api = jsonws.API()
-        return api.call("GET", "role/get-role", {'roleId': roleId})
+        return api.call("GET", "/role/get-role", {'roleId': roleId})
 
 
     def initRoles(self):
@@ -39,13 +37,12 @@ class Roles:
             desc = {
                 'en_US': 'The BIBBOX operator role is intended for users with are operators of installed applications'}
 
-            param = {'class-name': 'com.liferay.portal.kernel.model.Role', 'class-pk': '0', 'name': 'Bibbox Operator',
-                     'title-map': title, 'description-map': desc, 'type': '1', 'subtype': None}
+            param = {'className': 'com.liferay.portal.kernel.model.Role', 'classPk': '0', 'name': 'Bibbox Operator',
+                     'titleMap': title, 'descriptionMap': desc, 'type': '1', 'subtype': None}
 
-            r = api.call ("POST", "role/add-role", param)
+            r = api.call ("POST", "/role/add-role", param)
 
-
-#           print(r.text)
+            print(r.text)
 #           operatorRole = json.loads(r.text)['roleId']
 #           print(operatorRole)
 
@@ -54,9 +51,12 @@ class Roles:
             title = {'en_US': 'Bibbox Admin'}
             desc = {
                 'en_US': 'The BIBBOX administrator role is intended for the admin, who can install, configure and delete applications.'}
-            param = {'class-name': 'com.liferay.portal.kernel.model.Role', 'class-pk': '0', 'name': 'Bibbox Admin',
-                     'title-map': title, 'description-map': desc, 'type': '1', 'subtype': None}
-            r = api.call ("POST", "role/add-role", param)
+
+            param = {'className': 'com.liferay.portal.kernel.model.Role', 'classPk': '0', 'name': 'Bibbox Admin',
+                     'titleMap': title, 'descriptionMap': desc, 'type': '1', 'subtype': None}
+
+            r = api.call ("POST", "/role/add-role", param)
+
  #           print(r.text)
  #           adminRole = json.loads(r.text)['roleId']
  #           print(adminRole)
@@ -66,9 +66,11 @@ class Roles:
             title = {'en_US': 'Bibbox VM Admin'}
             desc = {
                 'en_US': 'The BIBBOX VM administrator role is intended for the administration of the virtual machine and liferay.'}
-            param = {'class-name': 'com.liferay.portal.kernel.model.Role', 'class-pk': '0', 'name': 'Bibbox VM Admin',
-                     'title-map': title, 'description-map': desc, 'type': '1', 'subtype': None}
-            r = api.call ("POST", "role/add-role", param)
+
+            param = {'className': 'com.liferay.portal.kernel.model.Role', 'classPk': '0', 'name': 'Bibbox VM Admin',
+                     'titleMap': title, 'descriptionMap': desc, 'type': '1', 'subtype': None}
+
+            r = api.call ("POST", "/role/add-role", param)
   #          print(r.text)
   #          vmadminRole = json.loads(r.text)['roleId']
   #          print(vmadminRole)
@@ -77,9 +79,11 @@ class Roles:
             print("CREATE BIBBOX PI")
             title = {'en_US': 'Bibbox PI'}
             desc = {'en_US': 'The BIBBOX PI role is intended for management of all application metadata.'}
-            param = {'class-name': 'com.liferay.portal.kernel.model.Role', 'class-pk': '0', 'name': 'Bibbox PI',
-                     'title-map': title, 'description-map': desc, 'type': '1', 'subtype': None}
-            r = api.call ("POST", "role/add-role", param)
+
+            param = {'className': 'com.liferay.portal.kernel.model.Role', 'classPk': '0', 'name': 'Bibbox PI',
+                     'titleMap': title, 'descriptionMap': desc, 'type': '1', 'subtype': None}
+
+            r = api.call ("POST", "/role/add-role", param)
   #         print(r.text)
   #         piRole = json.loads(r.text)['roleId']
   #          print(piRole)
@@ -88,14 +92,16 @@ class Roles:
             print("CREATE BIBBOX CURATOR")
             title = {'en_US': 'Bibbox Curator'}
             desc = {'en_US': 'The BIBBOX curator role is intended for management of all application metadata.'}
-            param = {'class-name': 'com.liferay.portal.kernel.model.Role', 'class-pk': '0', 'name': 'Bibbox Curator',
-                     'title-map': title, 'description-map': desc, 'type': '1', 'subtype': None}
-            r = api.call("POST", "role/add-role", param)
+
+            param = {'className': 'com.liferay.portal.kernel.model.Role', 'classPk': '0', 'name': 'Bibbox Curator',
+                     'titleMap': title, 'descriptionMap': desc, 'type': '1', 'subtype': None}
+            r = api.call("POST", "/role/add-role", param)
+            
 #            print(r.text)
 #            curatorRole = json.loads(r.text)['roleId']
 #            print(curatorRole)
 
-        r = api.call("GET", "role/get-roles", {'companyId': self.companyId, 'types': '1'})
+        r = api.call("GET", "/role/get-roles", {'companyId': self.companyId, 'types': '1'})
         self.allRoles = {}
         roles = json.loads(r.text)
         for rx in roles:
