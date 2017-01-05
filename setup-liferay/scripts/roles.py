@@ -87,7 +87,7 @@ class Roles:
         if 'BIBBOX Operator' not in roleNames:
             print("CREATE BIBBOX Operator ROLE")
             title = {'en_US': 'BIBBOX User'}
-            desc = {'en_US': 'The BIBBOX curator role is intended for management of all application metadata.'}
+            desc = {'en_US': 'The BIBBOX curator role is intended for the operation of specific tools.'}
 
             param = {'className': 'com.liferay.portal.kernel.model.Role', 'classPk': '0', 'name': 'BIBBOX Operator',
                      'titleMap': title, 'descriptionMap': desc, 'type': '1', 'subtype': None}

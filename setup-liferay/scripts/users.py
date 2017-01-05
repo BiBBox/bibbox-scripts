@@ -1,6 +1,5 @@
 import json
 import urllib
-import base64
 
 import requests
 import jsonws
@@ -38,7 +37,7 @@ class Users:
 
         print("FIRST GENERATE THE ROLES")
 
-        roleService = roles.Roles(companyId='20116')
+        roleService = roles.Roles(companyId=self.companyId )
         roleService.initRoles()
         roleIds = roleService.rolesIds()
 
@@ -89,7 +88,7 @@ class Users:
 
 
         if 'admin' not in screenNames:
-            print("CREATE BIBBOX  ADMIN USER")
+            print("CREATE BIBBOX ADMIN USER")
 
             param = {
                 "companyId": self.companyId,
