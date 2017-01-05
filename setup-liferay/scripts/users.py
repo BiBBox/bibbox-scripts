@@ -13,6 +13,8 @@ class Users:
         print ("WELCOME IN USER SERVICE")
         self.allUsers= {}
         self.companyId = companyId
+        self.defaultPassword = "graz2017"
+
 
         api = jsonws.API()
         r = api.call("/user/get-company-users", {'companyId': self.companyId, 'start':"0", 'end':'1000'})
@@ -48,8 +50,8 @@ class Users:
             param =  {
                 "companyId":  self.companyId,
                 "autoPassword": False,
-                "password1": "graz2017",
-                "password2": "graz2017",
+                "password1": self.defaultPassword,
+                "password2": self.defaultPassword,
                 "autoScreenName": False,
                 "screenName": "bibboxadmin",
                 "emailAddress": "bibboxadmin@bibbox.org",
@@ -65,7 +67,7 @@ class Users:
                 "birthdayMonth": 1,
                 "birthdayDay": 1,
                 "birthdayYear": 1970,
-                "jobTitle": "Responsible for the installation of the BIBBOX VM and liferay sys admin",
+                "jobTitle": "BIBBOX VM and LIFERAY Admin",
                 "groupIds": None,
                 "organizationIds": None,
                 "roleIds": [roleIds['BIBBOX VM Admin'], roleIds['Administrator']],
@@ -92,8 +94,8 @@ class Users:
             param = {
                 "companyId": self.companyId,
                 "autoPassword": False,
-                "password1": "graz2017",
-                "password2": "graz2017",
+                "password1": self.defaultPassword,
+                "password2": self.defaultPassword,
                 "autoScreenName": False,
                 "screenName": "admin",
                 "emailAddress": "admin@bibbox.org",
@@ -109,7 +111,7 @@ class Users:
                 "birthdayMonth": 1,
                 "birthdayDay": 1,
                 "birthdayYear": 1970,
-                "jobTitle": "Admin of the BIBBOX installation",
+                "jobTitle": "BIBBOX Admin",
                 "groupIds": None,
                 "organizationIds": None,
                 "roleIds": roleIds['BIBBOX Admin'],
@@ -136,8 +138,8 @@ class Users:
                 param = {
                     "companyId": self.companyId,
                     "autoPassword": False,
-                    "password1": "graz2017",
-                    "password2": "graz2017",
+                    "password1": self.defaultPassword,
+                    "password2": self.defaultPassword,
                     "autoScreenName": False,
                     "screenName": "pi",
                     "emailAddress": "pi@bibbox.org",
@@ -179,8 +181,8 @@ class Users:
                 param = {
                     "companyId": self.companyId,
                     "autoPassword": False,
-                    "password1": "graz2017",
-                    "password2": "graz2017",
+                    "password1": self.defaultPassword,
+                    "password2": self.defaultPassword,
                     "autoScreenName": False,
                     "screenName": "curator",
                     "emailAddress": "curator@bibbox.org",
@@ -221,8 +223,8 @@ class Users:
             param = {
                 "companyId": self.companyId,
                 "autoPassword": False,
-                "password1": "graz2017",
-                "password2": "graz2017",
+                "password1": self.defaultPassword,
+                "password2": self.defaultPassword,
                 "autoScreenName": False,
                 "screenName": "operator",
                 "emailAddress": "operator@bibbox.org",
