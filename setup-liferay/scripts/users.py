@@ -33,6 +33,7 @@ class Users:
 
         api = jsonws.API()
 
+
         print("FIRST GENERATE THE ROLES")
 
         roleService = roles.Roles(companyId='20116')
@@ -74,20 +75,15 @@ class Users:
             }
             r = api.call("/user/add-user", param )
             user =  json.loads(r.text)
-            print(user)
 
             with open('avatar-pics/roxana.jpg', 'rb') as f:
                 picdata = f.read()
 
-            base64_bytes  = base64.b64encode(picdata)
-            base64_string = base64_bytes.decode('utf-8')
-
             param = {
                 "userId": user['userId'],
-                "bytes": base64_string,
+                "bytes": list(picdata),
             }
-            #r = api.call("/user/update-portrait", param)
-            print(r.text)
+            r = api.call("/user/update-portrait", param)
 
 
         if 'admin' not in screenNames:
@@ -123,8 +119,16 @@ class Users:
             }
 
             r = api.call("/user/add-user", param)
-            print (r.text)
 
+            user = json.loads(r.text)
+            with open('avatar-pics/alan.jpg', 'rb') as f:
+                picdata = f.read()
+
+            param = {
+                "userId": user['userId'],
+                "bytes": list(picdata),
+            }
+            r = api.call("/user/update-portrait", param)
 
         if 'pi' not in screenNames:
                 print("CREATE BIBBOX PI USER")
@@ -158,10 +162,19 @@ class Users:
                     "serviceContext": {"assetTagNames": ["admin"]}
                 }
                 r = api.call("/user/add-user", param)
-                print (r.text)
+                user = json.loads(r.text)
+                with open('avatar-pics/maimuna.png', 'rb') as f:
+                    picdata = f.read()
+
+                param = {
+                    "userId": user['userId'],
+                    "bytes": list(picdata),
+                }
+                r = api.call("/user/update-portrait", param)
+
 
         if 'curator' not in screenNames:
-                print("CREATE BIBBOX PI USER")
+                print("CREATE BIBBOX CURATOR USER")
 
                 param = {
                     "companyId": self.companyId,
@@ -192,8 +205,15 @@ class Users:
                     "serviceContext": {"assetTagNames": ["curator"]}
                 }
                 r = api.call("/user/add-user", param)
-                print(r.text)
+                user = json.loads(r.text)
+                with open('avatar-pics/santa.png', 'rb') as f:
+                    picdata = f.read()
 
+                param = {
+                    "userId": user['userId'],
+                    "bytes": list(picdata),
+                }
+                r = api.call("/user/update-portrait", param)
 
         if 'operator' not in screenNames:
             print("CREATE BIBBOX PI USER")
@@ -227,4 +247,12 @@ class Users:
                 "serviceContext": {"assetTagNames": ["operator"]}
             }
             r = api.call("/user/add-user", param)
-            print(r.text)
+            user = json.loads(r.text)
+            with open('avatar-pics/carmen.jpg', 'rb') as f:
+                picdata = f.read()
+
+            param = {
+                "userId": user['userId'],
+                "bytes": list(picdata),
+            }
+            r = api.call("/user/update-portrait", param)
