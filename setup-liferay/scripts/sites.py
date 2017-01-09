@@ -15,23 +15,23 @@ class Sites:
 
         api = jsonws.API()
         r = api.call("/group/get-groups", {'companyId': self.companyId, 'parentGroupId': '0', 'site':'true'})
-        print(r.url)
-        print (r.text)
+        #print(r.url)
+        #print (r.text)
         groups = json.loads(r.text)
         for g in groups:
             if 'Guest'  in g['groupKey']:
                 self.groupID = g['groupId']
 
-        print("GROUP ID = ", self.groupID )
+        #print("GROUP ID = ", self.groupID )
 
         r = api.call("/layout/get-layouts", {'groupId': self.groupID, 'privateLayout': 'false'})
-        print (r.text)
+        #print (r.text)
         sites = json.loads(r.text)
 
-        print("SITES AVAILABLE")
+        #print("SITES AVAILABLE")
         for si in sites:
             self.allSites[si['friendlyURL']] = si['layoutId']
-        print(self.allSites)
+        #print(self.allSites)
 
 
     def siteIDs (self):
@@ -83,7 +83,6 @@ class Sites:
         layoutID = site['layoutId']
         plid = site['plid']
         self.allSites[sitejson["friendlyURL"]] = layoutID
-        print("SITES GENERATED WITH", site['layoutId'])
 
         # Update Layout setings, place Portlet
         param = {'groupId': self.groupID,
@@ -92,7 +91,6 @@ class Sites:
                  'typeSettings': sitejson["typeSettings"]}
 
         r = api.call("/layout/update-layout", param)
-        print(r.text)
 
         # Configure Portlet
         param = {
@@ -102,19 +100,16 @@ class Sites:
                 'preferences': sitejson["portletPreferences"]}
 
         r = api.call("/BIBBOXDocker-portlet.set-portlet-configuration", param)
-        print(r.text)
 
         # Setup Permissions
         self.removePermission(plid, roleIds['Guest'], "VIEW")
         for permission in sitejson['permission']:
             for userrole in permission:
-                print("-" + userrole + " : " + permission[userrole])
                 for actionId in permission[userrole].split(","):
                     self.setPermission(plid, roleIds[userrole], actionId)
 
 
     def setPermission(self, plid, roleId, actionId):
-        print("Set Permission")
         api = jsonws.API()
         param = {
             'companyId': self.companyId,
@@ -128,7 +123,6 @@ class Sites:
         r = api.call("/resourcepermission/add-resource-permission", param)
 
     def removePermission(self, plid, roleId, actionId):
-        print("Remove Permission")
         api = jsonws.API()
         param = {
             'companyId': self.companyId,
@@ -140,6 +134,3 @@ class Sites:
             'scope': 4}
 
         r = api.call("/resourcepermission/remove-resource-permission", param)
-
-    def addPermission(self):
-        print("Add Permission")
