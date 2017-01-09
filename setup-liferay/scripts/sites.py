@@ -41,6 +41,8 @@ class Sites:
         # Get all friendlyURL alredy exits
         siteNames = self.allSites.keys()
 
+        self.setTheme()
+
         # Load Site configurations
         with open('config/sites.json') as data_file:
             data = json.load(data_file)
@@ -52,6 +54,15 @@ class Sites:
                 print("Create " + site["friendlyURL"])
                 self.createSite(site)
 
+    def setTheme(self):
+        api = jsonws.API()
+        param = {'groupId': self.groupID,
+                 'privateLayout': 'false',
+                 'themeId': "bibbox_WAR_bibboxtheme",
+                 'colorSchemeId': "",
+                 'css': ""}
+
+        r = api.call("/layoutset/update-look-and-feel", param)
 
     def createSite(self, sitejson):
         api = jsonws.API()
@@ -65,7 +76,6 @@ class Sites:
         parentLayoutId = 0
         if(sitejson["parentSite"] != "0"):
             parentLayoutId = self.allSites[sitejson["parentSite"]]
-
 
         # Create Layout
         param = {'groupId' : self.groupID,
