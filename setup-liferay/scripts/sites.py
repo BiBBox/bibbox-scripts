@@ -1,8 +1,10 @@
 import json
 import urllib
+from pprint import pprint
 
 import requests
 import jsonws
+import roles
 
 class Sites:
 
@@ -35,35 +37,103 @@ class Sites:
     def siteIDs (self):
         return self.allSites
 
-
     def initSites(self):
-        api = jsonws.API()
-
+        # Get all friendlyURL alredy exits
         siteNames = self.allSites.keys()
 
-        if '/instances' not in siteNames:
-            print("CREATE INSTANCES SITE")
+        # Load Site configurations
+        with open('config/sites.json') as data_file:
+            data = json.load(data_file)
+        #pprint(data)
 
-            param = {'groupId' : self.groupID,
-                     'privateLayout' : 'false',
-                     'parentLayoutId': '0',
-                     'name' : 'Applications',
-                     'title': 'Applications',
-                     'description': 'Applications',
-                     'type': 'portlet',
-                     'hidden' : 'false',
-                     'friendlyURL' : '/instances' }
+        # Create all sites that are not existing
+        for site in data:
+            if site["friendlyURL"] not in siteNames:
+                print("Create " + site["friendlyURL"])
+                self.createSite(site)
 
-            r = api.call ("/layout/add-layout", param)
-            site = json.loads(r.text)
-            layoutID = site['layoutId']
-            print("SITES GENERATED WITH", site['layoutId'])
 
-            param = {'groupId': self.groupID,
+    def createSite(self, sitejson):
+        api = jsonws.API()
+
+        roleService = roles.Roles(companyId=self.companyId)
+        roleService.initRoles()
+        roleIds = roleService.rolesIds()
+
+        print("CREATE " + sitejson["name"] + " SITE")
+
+        # Create Layout
+        param = {'groupId' : self.groupID,
+                'privateLayout' : 'false',
+                'parentLayoutId': '0',
+                'name' : sitejson["name"],
+                'title': sitejson["title"],
+                'description': sitejson["description"],
+                'type': 'portlet',
+                'hidden' : sitejson["hidden"],
+                'friendlyURL' : sitejson["friendlyURL"] }
+
+        r = api.call ("/layout/add-layout", param)
+        site = json.loads(r.text)
+        layoutID = site['layoutId']
+        plid = site['plid']
+        print("SITES GENERATED WITH", site['layoutId'])
+
+        # Update Layout setings, place Portlet
+        param = {'groupId': self.groupID,
                  'privateLayout': 'false',
                  'layoutId': layoutID,
-                 'typeSettings': 'column-1=bibboxjscontainer_WAR_BIBBOXDockerportlet\nlayout-template-id=1_column'}
+                 'typeSettings': sitejson["typeSettings"]}
 
-            r = api.call("/layout/update-layout", param)
+        r = api.call("/layout/update-layout", param)
+        print(r.text)
 
-            # set the correct permisions
+        # Configure Portlet
+        param = {
+                'companyId': self.companyId,
+                'plid': plid,
+                'portletId': sitejson["portletId"],
+                'preferences': sitejson["portletPreferences"]}
+
+        r = api.call("/BIBBOXDocker-portlet.set-portlet-configuration", param)
+        print(r.text)
+
+        # Setup Permissions
+        self.removePermission(plid, roleIds['Guest'], "VIEW")
+        for permission in sitejson['permission']:
+            for userrole in permission:
+                print("-" + userrole + " : " + permission[userrole])
+                for actionId in permission[userrole].split(","):
+                    self.setPermission(plid, roleIds[userrole], actionId)
+
+
+    def setPermission(self, plid, roleId, actionId):
+        print("Set Permission")
+        api = jsonws.API()
+        param = {
+            'companyId': self.companyId,
+            'primKey': plid,
+            'groupId': self.groupID,
+            'name': 'com.liferay.portal.kernel.model.Layout',
+            'roleId': roleId,
+            'actionId': actionId,
+            'scope': 4}
+
+        r = api.call("/resourcepermission/add-resource-permission", param)
+
+    def removePermission(self, plid, roleId, actionId):
+        print("Remove Permission")
+        api = jsonws.API()
+        param = {
+            'companyId': self.companyId,
+            'primKey': plid,
+            'groupId': self.groupID,
+            'name': 'com.liferay.portal.kernel.model.Layout',
+            'roleId': roleId,
+            'actionId': actionId,
+            'scope': 4}
+
+        r = api.call("/resourcepermission/remove-resource-permission", param)
+
+    def addPermission(self):
+        print("Add Permission")

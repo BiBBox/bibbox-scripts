@@ -1,5 +1,6 @@
 import json
 import urllib
+from pprint import pprint
 
 import requests
 import jsonws
@@ -27,6 +28,8 @@ class Roles:
     def initRoles(self):
         api = jsonws.API()
         roleNames = self.allRoles.keys()
+
+        pprint(self.allRoles)
 
 
         if 'BIBBOX Admin' not in roleNames:

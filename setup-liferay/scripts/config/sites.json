@@ -1,0 +1,101 @@
+[
+  {
+    "friendlyURL":"/instances",
+    "parentSite":"0",
+    "name":"Applications",
+    "title":"Applications",
+    "description":"Applications",
+    "hidden":"false",
+    "typeSettings":"column-1=bibboxjscontainer_WAR_BIBBOXDockerportlet,\nlayout-template-id=1_column",
+    "portletId":"bibboxjscontainer_WAR_BIBBOXDockerportlet",
+    "portletPreferences":"<portlet-preferences><preference><name>firstparameter</name><value>instances</value></preference></portlet-preferences>",
+    "permission":[
+      {"BIBBOX Admin":"VIEW,UPDATE"},
+      {"BIBBOX PI":"VIEW"},
+      {"BIBBOX Curator":"VIEW"},
+      {"BIBBOX Operator":"VIEW"}
+    ]
+  },
+  {
+    "friendlyURL":"/instance",
+    "parentSite":"0",
+    "name":"Application",
+    "title":"Application",
+    "description":"Application",
+    "hidden":"true",
+    "typeSettings":"column-1=bibboxjscontainer_WAR_BIBBOXDockerportlet,\nlayout-template-id=1_column",
+    "portletId":"bibboxjscontainer_WAR_BIBBOXDockerportlet",
+    "portletPreferences":"<portlet-preferences><preference><name>firstparameter</name><value>instance</value></preference></portlet-preferences>",
+    "permission":[
+      {"BIBBOX Admin":"VIEW"},
+      {"BIBBOX PI":"VIEW"},
+      {"BIBBOX Curator":"VIEW"},
+      {"BIBBOX Operator":"VIEW"}
+    ]
+  },
+  {
+    "friendlyURL":"/store",
+    "parentSite":"0",
+    "name":"Store",
+    "title":"Store",
+    "description":"Store",
+    "hidden":"false",
+    "typeSettings":"column-1=bibboxjscontainer_WAR_BIBBOXDockerportlet,\nlayout-template-id=1_column",
+    "portletId":"bibboxjscontainer_WAR_BIBBOXDockerportlet",
+    "portletPreferences":"<portlet-preferences><preference><name>firstparameter</name><value>store</value></preference></portlet-preferences>",
+    "permission":[
+      {"BIBBOX Admin":"VIEW"},
+      {"BIBBOX PI":"VIEW"},
+      {"BIBBOX Curator":"VIEW"},
+      {"BIBBOX Operator":"VIEW"}
+    ]
+  },
+  {
+    "friendlyURL":"/install",
+    "parentSite":"0",
+    "name":"Store",
+    "title":"Store",
+    "description":"Store",
+    "hidden":"false",
+    "typeSettings":"column-1=bibboxjscontainer_WAR_BIBBOXDockerportlet,\nlayout-template-id=1_column",
+    "portletId":"bibboxjscontainer_WAR_BIBBOXDockerportlet",
+    "portletPreferences":"<portlet-preferences><preference><name>firstparameter</name><value>install</value></preference></portlet-preferences>",
+    "permission":[
+      {"BIBBOX Admin":"VIEW"}
+    ]
+  },
+  {
+    "friendlyURL":"/activities",
+    "parentSite":"0",
+    "name":"Activities",
+    "title":"Activities",
+    "description":"Activities",
+    "hidden":"false",
+    "typeSettings":"column-1=activity_WAR_BIBBOXDockerportlet,\nlayout-template-id=1_column",
+    "portletId":"activity_WAR_BIBBOXDockerportlet",
+    "portletPreferences":"",
+    "permission":[
+      {"BIBBOX Admin":"VIEW"},
+      {"BIBBOX PI":"VIEW"},
+      {"BIBBOX Curator":"VIEW"},
+      {"BIBBOX Operator":"VIEW"}
+    ]
+  },
+  {
+    "friendlyURL":"/footer",
+    "parentSite":"0",
+    "name":"FOOTER",
+    "title":"FOOTER",
+    "description":"FOOTER",
+    "hidden":"true",
+    "typeSettings":"",
+    "portletId":"activity_WAR_BIBBOXDockerportlet",
+    "portletPreferences":"",
+    "permission":[
+      {"BIBBOX Admin":"VIEW"},
+      {"BIBBOX PI":"VIEW"},
+      {"BIBBOX Curator":"VIEW"},
+      {"BIBBOX Operator":"VIEW"}
+    ]
+  }
+]
