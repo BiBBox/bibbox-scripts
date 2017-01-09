@@ -13,8 +13,8 @@ print ("SETUP SCRIPT FOT eB3KIT BIBBOX DEMO")
 siteService = sites.Sites(companyId = '20116')
 siteService.initSites()
 
-#userService = users.Users (companyId = '20116')
-#userService.initUsers()
+userService = users.Users (companyId = '20116')
+userService.initUsers()
 
 
 #roleService = roles.Roles(companyId = '20116')

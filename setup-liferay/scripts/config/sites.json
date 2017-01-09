@@ -56,7 +56,7 @@
     "name":"Install",
     "title":"Install",
     "description":"Install",
-    "hidden":"false",
+    "hidden":"true",
     "typeSettings":"column-1=bibboxjscontainer_WAR_BIBBOXDockerportlet,\nlayout-template-id=1_column",
     "portletId":"bibboxjscontainer_WAR_BIBBOXDockerportlet",
     "portletPreferences":"<portlet-preferences><preference><name>firstparameter</name><value>install</value></preference></portlet-preferences>",
