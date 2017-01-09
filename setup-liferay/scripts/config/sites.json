@@ -97,5 +97,59 @@
       {"BIBBOX Curator":"VIEW"},
       {"BIBBOX Operator":"VIEW"}
     ]
+  },
+  {
+    "friendlyURL":"/contact",
+    "parentSite":"/footer",
+    "name":"Contact",
+    "title":"Contact",
+    "description":"Contact",
+    "hidden":"true",
+    "typeSettings":"",
+    "portletId":"activity_WAR_BIBBOXDockerportlet",
+    "portletPreferences":"",
+    "permission":[
+      {"Guest":"VIEW"},
+      {"BIBBOX Admin":"VIEW"},
+      {"BIBBOX PI":"VIEW"},
+      {"BIBBOX Curator":"VIEW"},
+      {"BIBBOX Operator":"VIEW"}
+    ]
+  },
+  {
+    "friendlyURL":"/partners",
+    "parentSite":"/footer",
+    "name":"Partners",
+    "title":"Partners",
+    "description":"Partners",
+    "hidden":"true",
+    "typeSettings":"",
+    "portletId":"activity_WAR_BIBBOXDockerportlet",
+    "portletPreferences":"",
+    "permission":[
+      {"Guest":"VIEW"},
+      {"BIBBOX Admin":"VIEW"},
+      {"BIBBOX PI":"VIEW"},
+      {"BIBBOX Curator":"VIEW"},
+      {"BIBBOX Operator":"VIEW"}
+    ]
+  },
+  {
+    "friendlyURL":"/imprint",
+    "parentSite":"/footer",
+    "name":"Imprint",
+    "title":"Imprint",
+    "description":"Imprint",
+    "hidden":"true",
+    "typeSettings":"",
+    "portletId":"activity_WAR_BIBBOXDockerportlet",
+    "portletPreferences":"",
+    "permission":[
+      {"Guest":"VIEW"},
+      {"BIBBOX Admin":"VIEW"},
+      {"BIBBOX PI":"VIEW"},
+      {"BIBBOX Curator":"VIEW"},
+      {"BIBBOX Operator":"VIEW"}
+    ]
   }
 ]

@@ -62,10 +62,15 @@ class Sites:
 
         print("CREATE " + sitejson["name"] + " SITE")
 
+        parentLayoutId = 0
+        if(sitejson["parentSite"] != "0"):
+            parentLayoutId = self.allSites[sitejson["parentSite"]]
+
+
         # Create Layout
         param = {'groupId' : self.groupID,
                 'privateLayout' : 'false',
-                'parentLayoutId': '0',
+                'parentLayoutId': parentLayoutId,
                 'name' : sitejson["name"],
                 'title': sitejson["title"],
                 'description': sitejson["description"],
@@ -77,6 +82,7 @@ class Sites:
         site = json.loads(r.text)
         layoutID = site['layoutId']
         plid = site['plid']
+        self.allSites[sitejson["friendlyURL"]] = layoutID
         print("SITES GENERATED WITH", site['layoutId'])
 
         # Update Layout setings, place Portlet
