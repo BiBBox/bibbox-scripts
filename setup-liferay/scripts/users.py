@@ -80,7 +80,7 @@ class Users:
             r = api.call("/user/add-user", param )
             user =  json.loads(r.text)
             
-            bibboxadminpic = os.path.join(dir, '/avatar-pics/roxana.jpg')
+            bibboxadminpic = dir + '/avatar-pics/roxana.jpg'
             
             with open(bibboxadminpic, 'rb') as f:
                 picdata = f.read()
@@ -128,7 +128,7 @@ class Users:
 
             user = json.loads(r.text)
             
-            adminpic = os.path.join(dir, '/avatar-pics/alan.jpg')
+            adminpic = dir + '/avatar-pics/alan.jpg'
             
             with open(adminpic, 'rb') as f:
                 picdata = f.read()
@@ -173,7 +173,7 @@ class Users:
                 r = api.call("/user/add-user", param)
                 user = json.loads(r.text)
                 
-                pipic = os.path.join(dir, '/avatar-pics/maimuna.png')
+                pipic = dir + '/avatar-pics/maimuna.png'
                 
                 with open(pipic, 'rb') as f:
                     picdata = f.read()
@@ -219,7 +219,7 @@ class Users:
                 r = api.call("/user/add-user", param)
                 user = json.loads(r.text)
 
-                curatorpic = os.path.join(dir, '/avatar-pics/santa.png')
+                curatorpic = dir + '/avatar-pics/santa.png'
                 
                 with open(curatorpic, 'rb') as f:
                     picdata = f.read()
@@ -264,7 +264,7 @@ class Users:
             r = api.call("/user/add-user", param)
             user = json.loads(r.text)
             
-            operatorpic = os.path.join(dir, '/avatar-pics/carmen.jpg')
+            operatorpic = dir + '/avatar-pics/carmen.jpg'
             
             with open(operatorpic, 'rb') as f:
                 picdata = f.read()
