@@ -44,7 +44,7 @@ class Users:
 
         screenNames = self.allUsers.keys()
         
-        dir = os.path.dirname(__file__)
+        dir = os.path.dirname(os.path.realpath(__file__))
 
         if 'bibboxadmin' not in screenNames:
             print("CREATE BIBBOX VM ADMIN USER")
