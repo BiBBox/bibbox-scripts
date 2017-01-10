@@ -108,7 +108,7 @@ class Sites:
                 'plid': plid,
                 'portletId': sitejson["portletId"],
                 'preferences': sitejson["portletPreferences"]}
-
+        print("self.companyId:" + self.companyId + " plid:" + plid + " portletId:" + sitejson["portletId"] + " preferences:" + sitejson["portletPreferences"])
         r = api.call("/BIBBOXDocker-portlet.set-portlet-configuration", param)
 
         # Setup Permissions
