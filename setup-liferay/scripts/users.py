@@ -4,6 +4,7 @@ import urllib
 import requests
 import jsonws
 import roles
+import os
 
 class Users:
 
@@ -42,6 +43,8 @@ class Users:
         roleIds = roleService.rolesIds()
 
         screenNames = self.allUsers.keys()
+        
+        dir = os.path.dirname(__file__)
 
         if 'bibboxadmin' not in screenNames:
             print("CREATE BIBBOX VM ADMIN USER")
@@ -76,8 +79,10 @@ class Users:
             }
             r = api.call("/user/add-user", param )
             user =  json.loads(r.text)
-
-            with open('avatar-pics/roxana.jpg', 'rb') as f:
+            
+            bibboxadminpic = os.path.join(dir, '/avatar-pics/roxana.jpg')
+            
+            with open(bibboxadminpic, 'rb') as f:
                 picdata = f.read()
 
             param = {
@@ -122,7 +127,10 @@ class Users:
             r = api.call("/user/add-user", param)
 
             user = json.loads(r.text)
-            with open('avatar-pics/alan.jpg', 'rb') as f:
+            
+            adminpic = os.path.join(dir, '/avatar-pics/alan.jpg')
+            
+            with open(adminpic, 'rb') as f:
                 picdata = f.read()
 
             param = {
@@ -164,7 +172,10 @@ class Users:
                 }
                 r = api.call("/user/add-user", param)
                 user = json.loads(r.text)
-                with open('avatar-pics/maimuna.png', 'rb') as f:
+                
+                pipic = os.path.join(dir, '/avatar-pics/maimuna.png')
+                
+                with open(pipic, 'rb') as f:
                     picdata = f.read()
 
                 param = {
@@ -207,7 +218,10 @@ class Users:
                 }
                 r = api.call("/user/add-user", param)
                 user = json.loads(r.text)
-                with open('avatar-pics/santa.png', 'rb') as f:
+
+                curatorpic = os.path.join(dir, '/avatar-pics/santa.png')
+                
+                with open(curatorpic, 'rb') as f:
                     picdata = f.read()
 
                 param = {
@@ -249,7 +263,10 @@ class Users:
             }
             r = api.call("/user/add-user", param)
             user = json.loads(r.text)
-            with open('avatar-pics/carmen.jpg', 'rb') as f:
+            
+            operatorpic = os.path.join(dir, '/avatar-pics/carmen.jpg')
+            
+            with open(operatorpic, 'rb') as f:
                 picdata = f.read()
 
             param = {
