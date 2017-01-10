@@ -44,7 +44,7 @@ class Sites:
 
         self.setTheme()
 
-        dir = os.path.dirname(__file__)
+        dir = os.path.dirname(os.path.realpath(__file__))
         sitesfile = os.path.join(dir, '/config/sites.json')
         
         # Load Site configurations
