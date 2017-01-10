@@ -1,0 +1,40 @@
+<VirtualHost *:80>
+        ServerName testi-rserver.bibbox.org
+        <Proxy *>
+                        Order deny,allow
+                        Allow from all
+        </Proxy>
+
+        ProxyRequests           Off
+        ProxyPreserveHost On
+        ProxyPass               /       http://127.0.0.1:8084/
+        ProxyPassReverse        /       http://127.0.0.1:8084/
+</VirtualHost>
+
+<VirtualHost *:80>
+        ServerName testi-agate.bibbox.org
+        <Proxy *>
+                        Order deny,allow
+                        Allow from all
+        </Proxy>
+
+        ProxyRequests           Off
+        ProxyPreserveHost On
+        ProxyPass               /       http://127.0.0.1:8086/
+        ProxyPassReverse        /       http://127.0.0.1:8086/
+</VirtualHost>
+
+<VirtualHost *:80>
+        ServerName testi.bibbox.org
+        <Proxy *>
+                        Order deny,allow
+                        Allow from all
+        </Proxy>
+
+        ProxyRequests           Off
+        ProxyPreserveHost On
+        ProxyPass               /       http://127.0.0.1:8082/
+        ProxyPassReverse        /       http://127.0.0.1:8082/
+</VirtualHost>
+
+≤

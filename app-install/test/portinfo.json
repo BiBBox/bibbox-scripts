@@ -1,0 +1,40 @@
+{
+  "mappings": [
+    {
+      "id": "§§PORT-C",
+      "url": "§§INSTANCE-RSERVER",
+      "protocol": "HTTPS",
+      "proxy" : "PRE"
+    },
+      {
+      "id": "§§PORT-D",
+      "url": "§§INSTANCE-RSERVER",
+      "protocol": "HTTP",
+      "proxy" : "PRE"
+    },
+    {
+      "id": "§§PORT-E",
+      "url": "§§INSTANCE-AGATE",
+      "protocol": "HTTPS",
+      "proxy" : "PRE"
+    },
+    {
+      "id": "§§PORT-F",
+      "url": "§§INSTANCE-AGATE",
+      "protocol": "HTTP",
+      "proxy" : "PRE"
+    },
+    {
+      "id": "§§PORT-A",
+      "url": "§§INSTANCE",
+      "protocol": "HTTPS",
+      "proxy" : "PRE"
+    },
+    {
+      "id": "§§PORT-B",
+      "url": "§§INSTANCE",
+      "protocol": "HTTP",
+      "proxy" : "PRE"
+    }
+  ]
+}
