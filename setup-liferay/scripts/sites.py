@@ -5,6 +5,7 @@ from pprint import pprint
 import requests
 import jsonws
 import roles
+import os
 
 class Sites:
 
@@ -43,8 +44,11 @@ class Sites:
 
         self.setTheme()
 
+        dir = os.path.dirname(__file__)
+        sitesfile = os.path.join(dir, '/config/sites.json')
+        
         # Load Site configurations
-        with open('config/sites.json') as data_file:
+        with open(sitesfile) as data_file:
             data = json.load(data_file)
         #pprint(data)
 
