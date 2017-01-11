@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+import os
+import sys
+import getopt
 import json
 from pprint import pprint
 
@@ -16,9 +19,20 @@ def creatVirtualHost(id, protocol, proxy, subdomain, instance, url, portnumber):
 
 print ("SETUP UP PORT")
 
-with open('test/portinfo.json') as data_file:
+argv = sys.argv[1:]
+opts, args = getopt.getopt(argv,"a:i:",["applicationpath=","instancepath="])
+for opt, arg in opts:
+    if opt == '-h':
+        print('test.py -a <applicationpath> -i <instancepath>')
+        sys.exit()
+    elif opt in ("-a", "--applicationpath"):
+        applicationpath = arg
+    elif opt in ("-i", "--instancepath"):
+        instancepath = arg
+
+with open(instancepath + '/portinfo.json') as data_file:
     ports = json.load(data_file)
-with open('test/portmap.json') as data_file:
+with open(instancepath + '/portmap.json') as data_file:
     portsmapping = json.load(data_file)
 
 pprint(ports)
@@ -31,8 +45,10 @@ virtualhost = ""
 for port in ports['mappings']:
     virtualhost += creatVirtualHost(port['id'], port['protocol'], port['proxy'], port['url'], instance, baseurl, portsmapping[port['id']])
 
-target = open("test/005-" + instance, 'w')
+target = open("/etc/apache2/sites-available/test/005-" + instance, 'w')
 target.write(virtualhost)
 target.close()
+
+os.symlink("/etc/apache2/sites-available/test/005-" + instance, "/etc/apache2/sites-enabled/test/005-" + instance)
 
 

@@ -7,6 +7,26 @@
     {
       "source":"portinfo.json",
       "destination":"portinfo.json"
+    },
+    {
+      "source":"appinfo.json",
+      "destination":"appinfo.json"
+    },
+    {
+      "source":"environment-parameters.json",
+      "destination":"environment-parameters.json"
+    },
+    {
+      "source":"sys-info.json",
+      "destination":"sys-info.json"
+    },
+    {
+      "source":"docker-compose-template.yml",
+      "destination":"docker-compose-template.yml"
+    },
+    {
+      "source":"id-mapping-info.json",
+      "destination":"id-mapping-info.json"
     }
   ]
 }
