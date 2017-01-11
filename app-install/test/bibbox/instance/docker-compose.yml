@@ -17,15 +17,16 @@ services:
         - "8084:8080"
         - "8085:8080"
         - "8086:8080"
+        - "§§PORT-O:8080"
 
     testi-stategraems-db:
       image: mysql
       container_name: testi-stategraems-db
       environment:
-        - username=§§username
-        - institute=§§institute
-        - LABEL=§§LABEL
-        - TOMCAT_MANAGER_USER=§§TOMCAT_MANAGER_USER
+        - MYSQL_USER=username
+        - INSTITUTE_NAME=institute
+        - LABEL=Galaxy
+        - TOMCAT_MANAGER_USER=tomcat
       depends_on:
         - testi-stategraems-data
       volumes_from:

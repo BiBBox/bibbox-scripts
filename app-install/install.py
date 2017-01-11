@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os
+import re
 import sys
 import getopt
 import json
@@ -16,13 +17,16 @@ def updatePorts(template, portmap):
 
 def updateParameters(template, environment):
     for var in environment.keys():
-        template = template.replace(var, environment[var])
+        template = template.replace("§§" + var, environment[var])
     return template
 
-def updateEnvironment(template, environment):
-    for var in environment.keys():
-        template = template.replace(var, environment[var])
-    return template
+def testConfigMising(template):
+    if(template.find("§§")):
+        print("ERROR: there are unchanged Variables in the compose file!!")
+        m = re.search('(§§.*)[ :,.]?', template)
+        if m:
+            print("Found :" + m.group(1))
+        sys.exit(os.EX_DATAERR)
 
 print ("SETUP UP DOCKER-COMPOSE")
 
@@ -49,7 +53,9 @@ template = updateParameters(template, environment)
 
 with open(instancepath + "/config-parameters-settings.json") as data_file:
     config = json.load(data_file)
-template = updateParameters(template, environment)
+template = updateParameters(template, config)
+
+testConfigMising(template)
 
 target = open(instancepath + "/docker-compose.yml", 'w')
 target.write(template)
