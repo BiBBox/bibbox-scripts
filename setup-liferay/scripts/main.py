@@ -47,11 +47,11 @@ print("Trying to connect to liferay server.")
 testServerStarted(0)
 
 print ("SETUP SITES")
-#siteService = sites.Sites(companyId = '20116')
-#siteService.initSites()
+siteService = sites.Sites(companyId = '20116')
+siteService.initSites()
 
 print ("SETUP USERS")
-#userService = users.Users (companyId = '20116')
-#userService.initUsers()
+userService = users.Users (companyId = '20116')
+userService.initUsers()
 
 api = jsonws.API()

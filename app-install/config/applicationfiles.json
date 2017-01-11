@@ -17,6 +17,10 @@
       "destination":"environment-parameters.json"
     },
     {
+      "source":"config-parameters.json",
+      "destination":"config-parameters.json"
+    },
+    {
       "source":"sys-info.json",
       "destination":"sys-info.json"
     },
