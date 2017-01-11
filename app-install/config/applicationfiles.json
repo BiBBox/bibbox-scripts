@@ -1,0 +1,12 @@
+{
+  "copyapplicationfiles":[
+    {
+      "source":"file_structure.json",
+      "destination":"file_structure.json"
+    },
+    {
+      "source":"portinfo.json",
+      "destination":"portinfo.json"
+    }
+  ]
+}

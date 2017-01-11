@@ -1,0 +1,13 @@
+{
+  "makefolders":[
+    "data/mysql",
+    "data/tomcat/data",
+    "configs/etc/mysql"
+  ],
+  "copyfiles":[
+    {
+      "source":"configs_data/mysql/options.conf",
+      "destination":"configs/etc/mysql/options.conf"
+    }
+  ]
+}
