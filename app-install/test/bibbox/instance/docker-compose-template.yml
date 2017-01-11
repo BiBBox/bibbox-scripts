@@ -1,0 +1,39 @@
+version: '2'
+services:
+
+    §§INSTANCE-stategraems:
+      image: bibbox/stategraems
+      container_name: §§INSTANCE-stategraems
+      links:
+        - §§INSTANCE-stategraems-db:stategraems-db
+      depends_on:
+        - §§INSTANCE-stategraems-db
+      volumes_from:
+        - §§INSTANCE-stategraems-data
+      ports:
+        - "§§PORT-A:8080"
+        - "§§PORT-B:8080"
+        - "§§PORT-C:8080"
+        - "§§PORT-D:8080"
+        - "§§PORT-E:8080"
+        - "§§PORT-F:8080"
+
+    §§INSTANCE-stategraems-db:
+      image: mysql
+      container_name: §§INSTANCE-stategraems-db
+      environment:
+        - MYSQL_USER=§§MYSQL_USER
+        - INSTITUTE_NAME=§§INSTITUTE_NAME
+        - LABEL=§§LABEL
+        - TOMCAT_MANAGER_USER=§§TOMCAT_MANAGER_USER
+      depends_on:
+        - §§INSTANCE-stategraems-data
+      volumes_from:
+        - §§INSTANCE-stategraems-data
+
+    §§INSTANCE-stategraems-data:
+      image: busybox
+      container_name: §§INSTANCE-stategraems-data
+      volumes:
+        - ./var/lib/mysql:/var/lib/mysql
+        - ./data:/data
