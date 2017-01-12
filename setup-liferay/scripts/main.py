@@ -15,7 +15,7 @@ import sites
 import roles
 import users
 
-sys.stderr.write("SETUP SCRIPT FOT eB3KIT BIBBOX DEMO")
+sys.stdout.write("SETUP SCRIPT FOR eB3KIT BIBBOX DEMO \n")
 
 def testServerStarted(counter):
     try:
@@ -51,14 +51,14 @@ def testServerStarted(counter):
         time.sleep(15)
         testServerStarted(counter + 1)
 
-sys.stderr.write("Trying to connect to liferay server.")
+sys.stdout.write("Trying to connect to liferay server. \n")
 testServerStarted(0)
 
-sys.stderr.write("SETUP SITES")
+sys.stdout.write("SETUP SITES \n")
 siteService = sites.Sites(companyId = '20116')
 siteService.initSites()
 
-sys.stderr.write("SETUP USERS")
+sys.stdout.write("SETUP USERS \n")
 userService = users.Users (companyId = '20116')
 userService.initUsers()
 
