@@ -17,7 +17,7 @@ services:
         - "§§PORT-D:8080"
         - "§§PORT-E:8080"
         - "§§PORT-F:8080"
-        - "§§PORT-O:8080"
+        - "§§PORT-p:8080"
 
     §§INSTANCE-stategraems-db:
       image: mysql

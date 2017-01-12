@@ -21,9 +21,9 @@ def updateParameters(template, environment):
     return template
 
 def testConfigMising(template):
-    if(template.find("§§")):
+    if(template.find("§§") != -1):
         print("ERROR: there are unchanged Variables in the compose file!!")
-        m = re.search('(§§.*)[ :,.]?', template)
+        m = re.search('(§§.+)[ :]?', template)
         if m:
             print("Found :" + m.group(1))
         sys.exit(os.EX_DATAERR)
