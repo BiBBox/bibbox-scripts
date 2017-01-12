@@ -3,6 +3,7 @@
 import json
 import urllib
 import time
+import sys
 
 import requests
 import jsonws
@@ -12,7 +13,7 @@ import sites
 import roles
 import users
 
-print ("SETUP SCRIPT FOT eB3KIT BIBBOX DEMO")
+sys.stderr.write("SETUP SCRIPT FOT eB3KIT BIBBOX DEMO")
 
 def testServerStarted(counter):
     try:
@@ -26,31 +27,31 @@ def testServerStarted(counter):
         r = requests.get(url, auth=auth, headers=headers)
     except requests.exceptions.Timeout:
         # Maybe set up for a retry, or continue in a retry loop
-        print("Connection try:" + counter + "| Server still starting up, connection Timed out.")
+        sys.stderr.write("Connection try:" + counter + "| Server still starting up, connection Timed out.")
         if(counter > 10):
             return
         time.sleep(15)
         testServerStarted(counter + 1)
     except requests.exceptions.TooManyRedirects:
-        print("Error to many Redirects")
+        sys.stderr.write("Error to many Redirects")
         # Tell the user their URL was bad and try a different one
     except requests.exceptions.RequestException as e:
         # catastrophic error. bail.
-        print(e)
-        print("Connection try:" + counter + "| Error connecting to API.")
+        sys.stderr.write(e)
+        sys.stderr.write("Connection try:" + counter + "| Error connecting to API.")
         if (counter > 10):
             return
         time.sleep(15)
         testServerStarted(counter + 1)
 
-print("Trying to connect to liferay server.")
+sys.stderr.write("Trying to connect to liferay server.")
 testServerStarted(0)
 
-print ("SETUP SITES")
+sys.stderr.write("SETUP SITES")
 siteService = sites.Sites(companyId = '20116')
 siteService.initSites()
 
-print ("SETUP USERS")
+sys.stderr.write("SETUP USERS")
 userService = users.Users (companyId = '20116')
 userService.initUsers()
 
