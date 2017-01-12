@@ -3,10 +3,13 @@
 import json
 import urllib
 import time
+import os
+import sys
+import errno
 
 import requests
 import jsonws
-
+from pprint import pprint
 
 import sites
 import roles
@@ -24,11 +27,18 @@ def testServerStarted(counter):
         }
 
         r = requests.get(url, auth=auth, headers=headers)
+
+        if(r.status_code != requests.codes.ok):
+            print("Connection try:" + str(counter) + "| Bad API Response. " + str(r.status_code))
+            if (counter > 20):
+                sys.exit(errno.ETIME)
+            time.sleep(15)
+            testServerStarted(counter + 1)
     except requests.exceptions.Timeout:
         # Maybe set up for a retry, or continue in a retry loop
-        print("Connection try:" + counter + "| Server still starting up, connection Timed out.")
-        if(counter > 10):
-            return
+        print("Connection try:" + str(counter) + "| Server still starting up, connection Timed out.")
+        if(counter > 20):
+            sys.exit(errno.ETIME)
         time.sleep(15)
         testServerStarted(counter + 1)
     except requests.exceptions.TooManyRedirects:
@@ -37,9 +47,9 @@ def testServerStarted(counter):
     except requests.exceptions.RequestException as e:
         # catastrophic error. bail.
         print(e)
-        print("Connection try:" + counter + "| Error connecting to API.")
-        if (counter > 10):
-            return
+        print("Connection try:" + str(counter) + "| Error connecting to API.")
+        if (counter > 20):
+            sys.exit(errno.ETIME)
         time.sleep(15)
         testServerStarted(counter + 1)
 
