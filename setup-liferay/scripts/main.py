@@ -32,13 +32,13 @@ def testServerStarted(counter):
             print("Connection try:" + str(counter) + "| Bad API Response. " + str(r.status_code))
             if (counter > 60):
                 sys.exit(errno.ETIME)
-            time.sleep(15)
+            time.sleep(30)
             testServerStarted(counter + 1)
     except requests.exceptions.Timeout:
         print("Connection try:" + str(counter) + "| Server still starting up, connection Timed out.")
         if(counter > 60):
             sys.exit(errno.ETIME)
-        time.sleep(15)
+        time.sleep(30)
         testServerStarted(counter + 1)
     except requests.exceptions.TooManyRedirects:
         sys.stderr.write("Error to many Redirects")
@@ -48,7 +48,7 @@ def testServerStarted(counter):
         print("Connection try:" + str(counter) + "| Error connecting to API.")
         if (counter > 60):
             sys.exit(errno.ETIME)
-        time.sleep(15)
+        time.sleep(30)
         testServerStarted(counter + 1)
 
 sys.stdout.write("Trying to connect to liferay server. \n")
@@ -63,3 +63,8 @@ userService = users.Users (companyId = '20116')
 userService.initUsers()
 
 api = jsonws.API()
+
+target = open("/etc/bibbox/conf.d/setup.cfg", 'w')
+target.write('setup="done"')
+target.close()
+
