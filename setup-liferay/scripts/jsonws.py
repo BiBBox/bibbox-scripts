@@ -7,7 +7,7 @@ import urllib
 class API:
 
     def __init__(self):
-        self.auth = ('test@liferay.com', 'test')
+        self.auth = ('test', 'test')
 #        self.auth = ('bibboxadmin', 'bibbox2016')
 
     def call (self, command, param):

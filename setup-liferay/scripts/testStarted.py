@@ -1,21 +1,13 @@
 #!/usr/bin/env python
 
-import json
+import requests
 import urllib
 import time
 import os
 import sys
 import errno
-
 import requests
-import jsonws
-from pprint import pprint
 
-import sites
-import roles
-import users
-
-sys.stdout.write("SETUP SCRIPT FOR eB3KIT BIBBOX DEMO \n")
 
 def testServerStarted(counter):
     try:
@@ -28,7 +20,7 @@ def testServerStarted(counter):
 
         r = requests.get(url, auth=auth, headers=headers)
 
-        if(r.status_code != requests.codes.ok):
+        if (r.status_code != requests.codes.ok):
             print("Connection try:" + str(counter) + "| Bad API Response. " + str(r.status_code))
             if (counter > 60):
                 sys.exit(errno.ETIME)
@@ -36,7 +28,7 @@ def testServerStarted(counter):
             testServerStarted(counter + 1)
     except requests.exceptions.Timeout:
         print("Connection try:" + str(counter) + "| Server still starting up, connection Timed out.")
-        if(counter > 60):
+        if (counter > 60):
             sys.exit(errno.ETIME)
         time.sleep(30)
         testServerStarted(counter + 1)
@@ -50,21 +42,3 @@ def testServerStarted(counter):
             sys.exit(errno.ETIME)
         time.sleep(30)
         testServerStarted(counter + 1)
-
-sys.stdout.write("Trying to connect to liferay server. \n")
-testServerStarted(0)
-
-sys.stdout.write("SETUP SITES \n")
-siteService = sites.Sites(companyId = '20116')
-siteService.initSites()
-
-sys.stdout.write("SETUP USERS \n")
-userService = users.Users (companyId = '20116')
-userService.initUsers()
-
-api = jsonws.API()
-
-target = open("/etc/bibbox/conf.d/setup.cfg", 'w')
-target.write('setup="done"')
-target.close()
-
