@@ -1,0 +1,39 @@
+version: '2'
+services:
+
+    testi-stategraems:
+      image: bibbox/stategraems
+      container_name: testi-stategraems
+      links:
+        - testi-stategraems-db:stategraems-db
+      depends_on:
+        - testi-stategraems-db
+      volumes_from:
+        - testi-stategraems-data
+      ports:
+        - "8081:8080"
+        - "8082:8080"
+        - "8083:8080"
+        - "8084:8080"
+        - "8085:8080"
+        - "8086:8080"
+
+    testi-stategraems-db:
+      image: mysql
+      container_name: testi-stategraems-db
+      environment:
+        - MYSQL_USER=username
+        - INSTITUTE_NAME=institute
+        - LABEL=Galaxy
+        - TOMCAT_MANAGER_USER=tomcat
+      depends_on:
+        - testi-stategraems-data
+      volumes_from:
+        - testi-stategraems-data
+
+    testi-stategraems-data:
+      image: busybox
+      container_name: testi-stategraems-data
+      volumes:
+        - ./var/lib/mysql:/var/lib/mysql
+        - ./data:/data
