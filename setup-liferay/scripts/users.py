@@ -57,6 +57,11 @@ class Users:
             if user["screenname"] not in screenNames:
                 print("CREATE " + user["jobTitle"])
 
+                rIDs = []
+
+                for rID in user["roleIds"]:
+                    rIDs.append(roleIds[rID])
+
                 param =  {
                     "companyId":  self.companyId,
                     "autoPassword": False,
@@ -80,7 +85,7 @@ class Users:
                     "jobTitle": user["jobTitle"],
                     "groupIds": None,
                     "organizationIds": None,
-                    "roleIds": user["roleIds"],
+                    "roleIds": rIDs,
                     "userGroupIds": None,
                     "sendEmail": False,
                     "serviceContext": user["serviceContext"]
