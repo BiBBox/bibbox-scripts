@@ -45,232 +45,56 @@ class Users:
         screenNames = self.allUsers.keys()
         
         dir = os.path.dirname(os.path.realpath(__file__))
+        usersfile = dir + '/config/users.json'
+        
+        # Load User configurations
+        with open(usersfile) as data_file:
+            data = json.load(data_file)
+        #pprint(data)
 
-        if 'bibboxadmin' not in screenNames:
-            print("CREATE BIBBOX VM ADMIN USER")
+        # Create all users that are not existing
+        for user in data:
+            if user["screenname"] not in screenNames:
+                print("CREATE " + user["jobTitle"])
 
-            param =  {
-                "companyId":  self.companyId,
-                "autoPassword": False,
-                "password1": self.defaultPassword,
-                "password2": self.defaultPassword,
-                "autoScreenName": False,
-                "screenName": "bibboxadmin",
-                "emailAddress": "bibboxadmin@bibbox.org",
-                "facebookId": 0,
-                "openId": "",
-                "locale": "en_US",
-                "firstName": "Roxana",
-                "middleName": "",
-                "lastName": "Rilling",
-                "prefixId": 0,
-                "suffixId": 0,
-                "male": False,
-                "birthdayMonth": 1,
-                "birthdayDay": 1,
-                "birthdayYear": 1970,
-                "jobTitle": "BIBBOX VM and LIFERAY Admin",
-                "groupIds": None,
-                "organizationIds": None,
-                "roleIds": [roleIds['BIBBOX VM Admin'], roleIds['Administrator']],
-                "userGroupIds": None,
-                "sendEmail": False,
-                "serviceContext": {"assetTagNames": ["bibboxadmin"]}
-            }
-            r = api.call("/user/add-user", param )
-            user =  json.loads(r.text)
-            
-            bibboxadminpic = dir + '/avatar-pics/roxana.jpg'
-            
-            with open(bibboxadminpic, 'rb') as f:
-                picdata = f.read()
-
-            param = {
-                "userId": user['userId'],
-                "bytes": list(picdata),
-            }
-            r = api.call("/user/update-portrait", param)
-
-
-        if 'admin' not in screenNames:
-            print("CREATE BIBBOX ADMIN USER")
-
-            param = {
-                "companyId": self.companyId,
-                "autoPassword": False,
-                "password1": self.defaultPassword,
-                "password2": self.defaultPassword,
-                "autoScreenName": False,
-                "screenName": "admin",
-                "emailAddress": "admin@bibbox.org",
-                "facebookId": 0,
-                "openId": "",
-                "locale": "en_US",
-                "firstName": "Alan",
-                "middleName": "",
-                "lastName": "Punter",
-                "prefixId": 0,
-                "suffixId": 0,
-                "male": True,
-                "birthdayMonth": 1,
-                "birthdayDay": 1,
-                "birthdayYear": 1970,
-                "jobTitle": "BIBBOX Admin",
-                "groupIds": None,
-                "organizationIds": None,
-                "roleIds": roleIds['BIBBOX Admin'],
-                "userGroupIds": None,
-                "sendEmail": False,
-                "serviceContext": {"assetTagNames": ["admin"]}
-            }
-
-            r = api.call("/user/add-user", param)
-
-            user = json.loads(r.text)
-            
-            adminpic = dir + '/avatar-pics/alan.jpg'
-            
-            with open(adminpic, 'rb') as f:
-                picdata = f.read()
-
-            param = {
-                "userId": user['userId'],
-                "bytes": list(picdata),
-            }
-            r = api.call("/user/update-portrait", param)
-
-        if 'pi' not in screenNames:
-                print("CREATE BIBBOX PI USER")
-
-                param = {
-                    "companyId": self.companyId,
+                param =  {
+                    "companyId":  self.companyId,
                     "autoPassword": False,
                     "password1": self.defaultPassword,
                     "password2": self.defaultPassword,
                     "autoScreenName": False,
-                    "screenName": "pi",
-                    "emailAddress": "pi@bibbox.org",
+                    "screenName": user["screenname"],
+                    "emailAddress": user["emailAddress"],
                     "facebookId": 0,
                     "openId": "",
                     "locale": "en_US",
-                    "firstName": "Majmuna",
-                    "middleName": "",
-                    "lastName": "Sandu",
+                    "firstName": user["firstName"],
+                    "middleName": user["middleName"],
+                    "lastName": user["lastName"],
                     "prefixId": 0,
                     "suffixId": 0,
-                    "male": False,
-                    "birthdayMonth": 1,
-                    "birthdayDay": 1,
-                    "birthdayYear": 1970,
-                    "jobTitle": "BIBBOX PI",
+                    "male": user["male"],
+                    "birthdayMonth": user["birthdayMonth"],
+                    "birthdayDay": user["birthdayDay"],
+                    "birthdayYear": user["birthdayYear"],
+                    "jobTitle": user["jobTitle"],
                     "groupIds": None,
                     "organizationIds": None,
-                    "roleIds": roleIds['BIBBOX PI'],
+                    "roleIds": user["roleIds"],
                     "userGroupIds": None,
                     "sendEmail": False,
-                    "serviceContext": {"assetTagNames": ["admin"]}
+                    "serviceContext": user["serviceContext"]
                 }
                 r = api.call("/user/add-user", param)
-                user = json.loads(r.text)
+                tmp_user =  json.loads(r.text)
                 
-                pipic = dir + '/avatar-pics/maimuna.png'
+                pic = dir + user["avatar"]
                 
-                with open(pipic, 'rb') as f:
+                with open(pic, 'rb') as f:
                     picdata = f.read()
 
                 param = {
-                    "userId": user['userId'],
+                    "userId": tmp_user['userId'],
                     "bytes": list(picdata),
                 }
                 r = api.call("/user/update-portrait", param)
-
-
-        if 'curator' not in screenNames:
-                print("CREATE BIBBOX CURATOR USER")
-
-                param = {
-                    "companyId": self.companyId,
-                    "autoPassword": False,
-                    "password1": self.defaultPassword,
-                    "password2": self.defaultPassword,
-                    "autoScreenName": False,
-                    "screenName": "curator",
-                    "emailAddress": "curator@bibbox.org",
-                    "facebookId": 0,
-                    "openId": "",
-                    "locale": "en_US",
-                    "firstName": "Santa",
-                    "middleName": "",
-                    "lastName": "Morello",
-                    "prefixId": 0,
-                    "suffixId": 0,
-                    "male": False,
-                    "birthdayMonth": 1,
-                    "birthdayDay": 1,
-                    "birthdayYear": 1970,
-                    "jobTitle": "BIBBOX Curator",
-                    "groupIds": None,
-                    "organizationIds": None,
-                    "roleIds": roleIds['BIBBOX Curator'],
-                    "userGroupIds": None,
-                    "sendEmail": False,
-                    "serviceContext": {"assetTagNames": ["curator"]}
-                }
-                r = api.call("/user/add-user", param)
-                user = json.loads(r.text)
-
-                curatorpic = dir + '/avatar-pics/santa.png'
-                
-                with open(curatorpic, 'rb') as f:
-                    picdata = f.read()
-
-                param = {
-                    "userId": user['userId'],
-                    "bytes": list(picdata),
-                }
-                r = api.call("/user/update-portrait", param)
-
-        if 'operator' not in screenNames:
-            print("CREATE BIBBOX PI USER")
-
-            param = {
-                "companyId": self.companyId,
-                "autoPassword": False,
-                "password1": self.defaultPassword,
-                "password2": self.defaultPassword,
-                "autoScreenName": False,
-                "screenName": "operator",
-                "emailAddress": "operator@bibbox.org",
-                "facebookId": 0,
-                "openId": "",
-                "locale": "en_US",
-                "firstName": "Carmen",
-                "middleName": "",
-                "lastName": "Thatcher",
-                "prefixId": 0,
-                "suffixId": 0,
-                "male": False,
-                "birthdayMonth": 1,
-                "birthdayDay": 1,
-                "birthdayYear": 1970,
-                "jobTitle": "BIBBOX Operator",
-                "groupIds": None,
-                "organizationIds": None,
-                "roleIds": roleIds['BIBBOX Operator'],
-                "userGroupIds": None,
-                "sendEmail": False,
-                "serviceContext": {"assetTagNames": ["operator"]}
-            }
-            r = api.call("/user/add-user", param)
-            user = json.loads(r.text)
-            
-            operatorpic = dir + '/avatar-pics/carmen.jpg'
-            
-            with open(operatorpic, 'rb') as f:
-                picdata = f.read()
-
-            param = {
-                "userId": user['userId'],
-                "bytes": list(picdata),
-            }
-            r = api.call("/user/update-portrait", param)
