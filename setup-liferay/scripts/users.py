@@ -54,7 +54,7 @@ class Users:
 
         # Create all users that are not existing
         for user in data:
-            if user["screenname"] not in screenNames:
+            if user["screenName"] not in screenNames:
                 print("CREATE " + user["jobTitle"])
 
                 rIDs = []
@@ -68,7 +68,7 @@ class Users:
                     "password1": self.defaultPassword,
                     "password2": self.defaultPassword,
                     "autoScreenName": False,
-                    "screenName": user["screenname"],
+                    "screenName": user["screenName"],
                     "emailAddress": user["emailAddress"],
                     "facebookId": 0,
                     "openId": "",
