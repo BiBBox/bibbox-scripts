@@ -1,6 +1,7 @@
 import json
 import urllib
 from pprint import pprint
+import logging
 
 import requests
 import jsonws
@@ -9,10 +10,13 @@ import os
 
 class Sites:
 
-    def __init__(self, companyId=0):
+    def __init__(self, companyId=0, logger=""):
 
         self.allSites= {}
         self.companyId = companyId
+        self.logger = logger
+
+        self.logger.info("SETUP USERS \n")
 
         api = jsonws.API()
         r = api.call("/group/get-groups", {'companyId': self.companyId, 'parentGroupId': '0', 'site':'true'})
@@ -26,6 +30,8 @@ class Sites:
         #print("GROUP ID = ", self.groupID )
 
         r = api.call("/layout/get-layouts", {'groupId': self.groupID, 'privateLayout': 'false'})
+        self.logger.info("/layout/get-layouts")
+        self.logger.info(r.text)
         #print (r.text)
         sites = json.loads(r.text)
 
@@ -93,6 +99,9 @@ class Sites:
                 'friendlyURL' : sitejson["friendlyURL"] }
 
         r = api.call ("/layout/add-layout", param)
+        self.logger.info("/layout/add-layout")
+        self.logger.info(r.text)
+
         site = json.loads(r.text)
         layoutID = site['layoutId']
         plid = site['plid']
@@ -105,6 +114,8 @@ class Sites:
                  'typeSettings': sitejson["typeSettings"]}
 
         r = api.call("/layout/update-layout", param)
+        self.logger.info("/layout/update-layout")
+        self.logger.info(r.text)
 
         # Configure Portlet
         param = {
@@ -114,6 +125,9 @@ class Sites:
                 'preferences': sitejson["portletPreferences"]}
         print("self.companyId:" + self.companyId + " plid:" + plid + " portletId:" + sitejson["portletId"] + " preferences:" + sitejson["portletPreferences"])
         r = api.call("/BIBBOXDocker-portlet.set-portlet-configuration", param)
+
+        self.logger.info("/BIBBOXDocker-portlet.set-portlet-configuration")
+        self.logger.info(r.text)
 
         # Setup Permissions
         self.removePermission(plid, roleIds['Guest'], "VIEW")
@@ -135,6 +149,8 @@ class Sites:
             'scope': 4}
 
         r = api.call("/resourcepermission/add-resource-permission", param)
+        self.logger.info("/resourcepermission/add-resource-permission")
+        self.logger.info(r.text)
 
     def removePermission(self, plid, roleId, actionId):
         api = jsonws.API()
@@ -148,3 +164,5 @@ class Sites:
             'scope': 4}
 
         r = api.call("/resourcepermission/remove-resource-permission", param)
+        self.logger.info("/resourcepermission/remove-resource-permission")
+        self.logger.info(r.text)

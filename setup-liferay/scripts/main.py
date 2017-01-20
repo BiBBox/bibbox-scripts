@@ -29,6 +29,8 @@ def testServerStarted(counter):
         }
 
         r = requests.get(url, auth=auth, headers=headers)
+        logger.info("Test: http://localhost:8080/api/jsonws/BIBBOXDocker-portlet.get-updated-application-store-list")
+        logger.info(r.text)
 
         if(r.status_code != requests.codes.ok):
             print("Connection try:" + str(counter) + "| Bad API Response. " + str(r.status_code))
@@ -74,7 +76,7 @@ testServerStarted(0)
 
 sys.stdout.write("SETUP SITES \n")
 logger.info("SETUP SITES \n")
-siteService = sites.Sites(companyId = '20116')
+siteService = sites.Sites('20116', logger)
 siteService.initSites()
 
 sys.stdout.write("SETUP USERS \n")
