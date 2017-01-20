@@ -4,7 +4,7 @@
       "id": "§§PORT-C",
       "url": "§§INSTANCE-RSERVER",
       "protocol": "HTTPS",
-      "proxy" : "PRIMARY"
+      "proxy" : "PRE"
     },
       {
       "id": "§§PORT-D",

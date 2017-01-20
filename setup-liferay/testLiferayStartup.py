@@ -1,13 +1,10 @@
-#!/usr/bin/env python
-
-import requests
-import urllib
-import time
 import os
 import sys
 import errno
+import time
 import requests
 
+sys.stdout.write("SETUP SCRIPT FOR eB3KIT BIBBOX DEMO \n")
 
 def testServerStarted(counter):
     try:
@@ -20,7 +17,7 @@ def testServerStarted(counter):
 
         r = requests.get(url, auth=auth, headers=headers)
 
-        if (r.status_code != requests.codes.ok):
+        if(r.status_code != requests.codes.ok):
             print("Connection try:" + str(counter) + "| Bad API Response. " + str(r.status_code))
             if (counter > 60):
                 sys.exit(errno.ETIME)
@@ -28,7 +25,7 @@ def testServerStarted(counter):
             testServerStarted(counter + 1)
     except requests.exceptions.Timeout:
         print("Connection try:" + str(counter) + "| Server still starting up, connection Timed out.")
-        if (counter > 60):
+        if(counter > 60):
             sys.exit(errno.ETIME)
         time.sleep(30)
         testServerStarted(counter + 1)
@@ -42,3 +39,6 @@ def testServerStarted(counter):
             sys.exit(errno.ETIME)
         time.sleep(30)
         testServerStarted(counter + 1)
+
+sys.stdout.write("Waiting for liferay server to start. \n")
+testServerStarted(0)
