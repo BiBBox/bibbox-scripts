@@ -37,9 +37,9 @@ for opt, arg in opts:
         print('test.py -a <applicationpath> -i <instancepath>')
         sys.exit()
     elif opt in ("-a", "--applicationpath"):
-        applicationpath = arg
+        applicationpath = arg.strip()
     elif opt in ("-i", "--instancepath"):
-        instancepath = arg
+        instancepath = arg.strip()
 
 template = open(instancepath + '/docker-compose-template.yml', 'r').read()
 

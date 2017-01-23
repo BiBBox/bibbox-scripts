@@ -26,9 +26,9 @@ for opt, arg in opts:
         print('test.py -a <applicationpath> -i <instancepath>')
         sys.exit()
     elif opt in ("-a", "--applicationpath"):
-        applicationpath = arg
+        applicationpath = arg.strip()
     elif opt in ("-i", "--instancepath"):
-        instancepath = arg
+        instancepath = arg.strip()
 
 with open(instancepath + '/portinfo.json') as data_file:
     ports = json.load(data_file)
