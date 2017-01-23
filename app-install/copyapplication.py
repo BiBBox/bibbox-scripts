@@ -12,12 +12,8 @@ from pprint import pprint
 def createFolders(instancepath, folder):
     directory = instancepath + "/" + folder
     print("Creating folders: " + directory)
-    splitfolders = folder.split('/')
-    directory = instancepath
-    for newfolder in splitfolders:
-        directory = directory + '/' + newfolder
-        if not os.path.exists(directory):
-            os.mkdir(directory)
+    if not os.path.exists(directory):
+        os.makedirs(directory)
 
 def copyFiles(applicationpath, source, instancepath, destination):
     try:
