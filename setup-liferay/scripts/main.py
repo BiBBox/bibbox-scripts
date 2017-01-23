@@ -22,7 +22,9 @@ logger = logging.getLogger("app-analyser")
 def testServerStarted(counter):
     try:
         auth = ('test', 'test')
-        url = "http://localhost:8080/api/jsonws/BIBBOXDocker-portlet.get-updated-application-store-list"
+        #url = "http://localhost:8080/api/jsonws/BIBBOXDocker-portlet.get-updated-application-store-list"
+        url = "http://eb3kit.bibbox.org/api/jsonws/BIBBOXDocker-portlet.get-updated-application-store-list"
+
         headers = {
             'content-type': "application/json",
             'cache-control': "no-cache"

@@ -13,8 +13,10 @@ class API:
     def call (self, command, param):
 
         #invokeURL = "http://development.bibbox.org/api/jsonws/invoke"
-        invokeURL = "http://localhost:8080/api/jsonws/invoke"
+        #invokeURL = "http://localhost:8080/api/jsonws/invoke"
         #invokeURL = "http://212.232.25.224:18080/api/jsonws/invoke"
+        invokeURL = "http://eb3kit.bibbox.org/api/jsonws/invoke"
+
         headers = {
             'content-type': "application/json",
             'cache-control': "no-cache"

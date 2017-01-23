@@ -16,10 +16,14 @@ def createFolders(instancepath, folder):
 
 def copyFiles(applicationpath, source, instancepath, destination):
     try:
-        print("Copy file: " + destination)
         src = applicationpath + "/" + source
         dest = instancepath + "/" + destination
-        shutil.copy2(src, dest)
+        if(os.path.isfile(src)):
+            print("Copy file: " + destination)
+            shutil.copy2(src, dest)
+        if(os.path.isdir(src)):
+            print("Copy folder: " + destination)
+            shutil.copytree(src, dest)
     except:
         print("Unexpected copy error:" + str(sys.exc_info()[1]))
 
