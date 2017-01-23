@@ -17,7 +17,7 @@ def createFolders(instancepath, folder):
     for newfolder in splitfolders:
         directory = directory + newfolder
         if not os.path.exists(directory):
-            os.makedir(directory)
+            os.mkdir(directory)
 
 def copyFiles(applicationpath, source, instancepath, destination):
     try:
