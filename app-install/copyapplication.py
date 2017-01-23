@@ -15,7 +15,7 @@ def createFolders(instancepath, folder):
     splitfolders = folder.split('/')
     directory = instancepath
     for newfolder in splitfolders:
-        directory = directory + newfolder
+        directory = directory + '/' + newfolder
         if not os.path.exists(directory):
             os.mkdir(directory)
 
