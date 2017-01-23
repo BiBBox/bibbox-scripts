@@ -44,7 +44,7 @@ for opt, arg in opts:
     elif opt in ("-a", "--applicationpath"):
         applicationpath = arg.strip()
     elif opt in ("-i", "--instancepath"):
-        instancepath = arg
+        instancepath = arg.strip()
 
 dir = os.path.dirname(os.path.realpath(__file__))
 applicationfiles = os.path.join(dir, 'config/applicationfiles.json')
