@@ -45,10 +45,10 @@ virtualhost = ""
 for port in ports['mappings']:
     virtualhost += creatVirtualHost(port['id'], port['protocol'], port['proxy'], port['url'], instance, baseurl, portsmapping[port['id']])
 
-target = open("/etc/apache2/sites-available/test/005-" + instance, 'w')
+target = open("/etc/apache2/sites-available/005-" + instance, 'w')
 target.write(virtualhost)
 target.close()
 
-os.symlink("/etc/apache2/sites-available/test/005-" + instance, "/etc/apache2/sites-enabled/test/005-" + instance)
+os.symlink("/etc/apache2/sites-available/005-" + instance, "/etc/apache2/sites-enabled/005-" + instance)
 
 
