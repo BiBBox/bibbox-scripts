@@ -1,0 +1,27 @@
+[
+	{
+		"name":	"BIBBOX Admin",
+		"description": "The BIBBOX administrator role is intended for the admin, who can install, configure and delete applications."
+
+	},
+	{
+		"name":	"BIBBOX VM Admin",
+		"description": "The BIBBOX VM administrator role is intended for the administration of the virtual machine and liferay."
+
+	},
+	{
+		"name":	"BIBBOX PI",
+		"description": "The BIBBOX PI role is intended for management of all application metadata."
+
+	},
+	{
+		"name":	"BIBBOX Curator",
+		"description": "The BIBBOX curator role is intended for management of all application metadata."
+
+	},
+	{
+		"name":	"BIBBOX Operator",
+		"description": "The BIBBOX curator role is intended for the operation of specific tools."
+
+	}
+]
