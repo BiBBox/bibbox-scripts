@@ -57,6 +57,9 @@ template = updateParameters(template, config)
 
 testConfigMising(template)
 
+print(template)
+print(instancepath + "/docker-compose.yml")
+
 target = open(instancepath + "/docker-compose.yml", 'w')
 target.write(template)
 target.close()

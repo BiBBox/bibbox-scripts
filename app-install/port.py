@@ -35,7 +35,7 @@ with open(instancepath + '/portinfo.json') as data_file:
 with open(instancepath + '/portmap.json') as data_file:
     portsmapping = json.load(data_file)
 
-pprint(ports)
+pprint(portsmapping)
 
 baseurl = portsmapping['baseurl']
 instance = portsmapping['instance']
