@@ -1,4 +1,5 @@
 import json
+import os
 import urllib
 from pprint import pprint
 
@@ -31,6 +32,8 @@ class Roles:
 
         pprint(self.allRoles)
 
+        dir = os.path.dirname(os.path.realpath(__file__))
+        rolesfile = dir + '/config/roles.json'
 
         # Load Role configurations
         with open(rolesfile) as data_file:
