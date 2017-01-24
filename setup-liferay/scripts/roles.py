@@ -42,12 +42,12 @@ class Roles:
 
         # Create all roles that are not existing
         for role in data:
-            if data["name"] not in roleNames:
-                print("CREATE " + data["name"] + " ROLE")
-                title = {'en_US': data["name"]}
-                desc = {'en_US': data["description"]}
+            if role["name"] not in roleNames:
+                print("CREATE " + role["name"] + " ROLE")
+                title = {'en_US': role["name"]}
+                desc = {'en_US': role["description"]}
 
-                param = {'className': 'com.liferay.portal.kernel.model.Role', 'classPk': '0', 'name': data["name"],
+                param = {'className': 'com.liferay.portal.kernel.model.Role', 'classPk': '0', 'name': role["name"],
                          'titleMap': title, 'descriptionMap': desc, 'type': '1', 'subtype': None}
 
                 r = api.call ("/role/add-role", param)
