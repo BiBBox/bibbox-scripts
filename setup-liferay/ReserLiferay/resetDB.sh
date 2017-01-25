@@ -1,0 +1,1 @@
+runuser -l postgres -c 'psql -f sqlcommands.sql'

@@ -1,0 +1,3 @@
+DROP DATABASE lportal;
+CREATE DATABASE lportal;
+GRANT ALL ON DATABASE lportal TO liferay;

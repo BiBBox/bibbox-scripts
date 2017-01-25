@@ -21,18 +21,10 @@ def deleteLiferayFolders():
             shutil.rmtree(os.path.join(root, d))
     os.remove("/etc/bibbox/conf.d/setup.cfg")
 
+def resetDB():
+    os.system('./resetDB.sh')
+
 print("Reset Liferay")
 stopLiferay()
 deleteLiferayFolders()
-
-liferayconfig = open('/opt/liferay/portal-setup-wizard.properties', 'r').read()
-m = re.search('jdbc.default.password=(.*)', liferayconfig)
-lpassword = m.group(0)
-m = re.search('jdbc.default.url=(.*)', liferayconfig)
-lurl = m.group(0)
-m = re.search('jdbc.default.username=(.*)', liferayconfig)
-lusername = m.group(0)
-
-print("PW: " + lpassword)
-print("URL: " + lurl)
-print("User: " + lusername)
+resetDB()
