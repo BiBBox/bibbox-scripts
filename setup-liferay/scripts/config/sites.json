@@ -71,9 +71,9 @@
     "title":"Activities",
     "description":"Activities",
     "hidden":"false",
-    "typeSettings":"column-1=activity_WAR_BIBBOXDockerportlet,\nlayout-template-id=1_column",
-    "portletId":"activity_WAR_BIBBOXDockerportlet",
-    "portletPreferences":"",
+    "typeSettings":"column-1=bibboxjscontainer_WAR_BIBBOXDockerportlet,\nlayout-template-id=1_column",
+    "portletId":"bibboxjscontainer_WAR_BIBBOXDockerportlet",
+    "portletPreferences":"<portlet-preferences><preference><name>firstparameter</name><value>activities</value></preference></portlet-preferences>",
     "permission":[
       {"BIBBOX Admin":"VIEW"},
       {"BIBBOX PI":"VIEW"},
