@@ -10,10 +10,10 @@
     "portletId":"bibboxjscontainer_WAR_BIBBOXDockerportlet",
     "portletPreferences":"<portlet-preferences><preference><name>firstparameter</name><value>instances</value></preference></portlet-preferences>",
     "permission":[
-      {"BIBBOX Admin":"VIEW,UPDATE"},
-      {"BIBBOX PI":"VIEW"},
-      {"BIBBOX Curator":"VIEW"},
-      {"BIBBOX Operator":"VIEW"}
+      {"BIBBOX Admin":"[\"VIEW\",\"UPDATE\"]"},
+      {"BIBBOX PI":"[\"VIEW\"]"},
+      {"BIBBOX Curator":"[\"VIEW\"]"},
+      {"BIBBOX Operator":"[\"VIEW\"]"}
     ]
   },
   {
@@ -27,10 +27,10 @@
     "portletId":"bibboxjscontainer_WAR_BIBBOXDockerportlet",
     "portletPreferences":"<portlet-preferences><preference><name>firstparameter</name><value>instance</value></preference></portlet-preferences>",
     "permission":[
-      {"BIBBOX Admin":"VIEW"},
-      {"BIBBOX PI":"VIEW"},
-      {"BIBBOX Curator":"VIEW"},
-      {"BIBBOX Operator":"VIEW"}
+      {"BIBBOX Admin":"[\"VIEW\"]"},
+      {"BIBBOX PI":"[\"VIEW\"]"},
+      {"BIBBOX Curator":"[\"VIEW\"]"},
+      {"BIBBOX Operator":"[\"VIEW\"]"}
     ]
   },
   {
@@ -44,10 +44,10 @@
     "portletId":"bibboxjscontainer_WAR_BIBBOXDockerportlet",
     "portletPreferences":"<portlet-preferences><preference><name>firstparameter</name><value>store</value></preference></portlet-preferences>",
     "permission":[
-      {"BIBBOX Admin":"VIEW"},
-      {"BIBBOX PI":"VIEW"},
-      {"BIBBOX Curator":"VIEW"},
-      {"BIBBOX Operator":"VIEW"}
+      {"BIBBOX Admin":"[\"VIEW\"]"},
+      {"BIBBOX PI":"[\"VIEW\"]"},
+      {"BIBBOX Curator":"[\"VIEW\"]"},
+      {"BIBBOX Operator":"[\"VIEW\"]"}
     ]
   },
   {
@@ -61,7 +61,7 @@
     "portletId":"bibboxjscontainer_WAR_BIBBOXDockerportlet",
     "portletPreferences":"<portlet-preferences><preference><name>firstparameter</name><value>install</value></preference></portlet-preferences>",
     "permission":[
-      {"BIBBOX Admin":"VIEW"}
+      {"BIBBOX Admin":"[\"VIEW\"]"}
     ]
   },
   {
@@ -75,10 +75,10 @@
     "portletId":"bibboxjscontainer_WAR_BIBBOXDockerportlet",
     "portletPreferences":"<portlet-preferences><preference><name>firstparameter</name><value>activities</value></preference></portlet-preferences>",
     "permission":[
-      {"BIBBOX Admin":"VIEW"},
-      {"BIBBOX PI":"VIEW"},
-      {"BIBBOX Curator":"VIEW"},
-      {"BIBBOX Operator":"VIEW"}
+      {"BIBBOX Admin":"[\"VIEW\"]"},
+      {"BIBBOX PI":"[\"VIEW\"]"},
+      {"BIBBOX Curator":"[\"VIEW\"]"},
+      {"BIBBOX Operator":"[\"VIEW\"]"}
     ]
   },
   {
@@ -92,10 +92,10 @@
     "portletId":"activity_WAR_BIBBOXDockerportlet",
     "portletPreferences":"",
     "permission":[
-      {"BIBBOX Admin":"VIEW"},
-      {"BIBBOX PI":"VIEW"},
-      {"BIBBOX Curator":"VIEW"},
-      {"BIBBOX Operator":"VIEW"}
+      {"BIBBOX Admin":"[\"VIEW\"]"},
+      {"BIBBOX PI":"[\"VIEW\"]"},
+      {"BIBBOX Curator":"[\"VIEW\"]"},
+      {"BIBBOX Operator":"[\"VIEW\"]"}
     ]
   },
   {
@@ -109,11 +109,11 @@
     "portletId":"activity_WAR_BIBBOXDockerportlet",
     "portletPreferences":"",
     "permission":[
-      {"Guest":"VIEW"},
-      {"BIBBOX Admin":"VIEW"},
-      {"BIBBOX PI":"VIEW"},
-      {"BIBBOX Curator":"VIEW"},
-      {"BIBBOX Operator":"VIEW"}
+      {"Guest":"[\"VIEW\"]"},
+      {"BIBBOX Admin":"[\"VIEW\"]"},
+      {"BIBBOX PI":"[\"VIEW\"]"},
+      {"BIBBOX Curator":"[\"VIEW\"]"},
+      {"BIBBOX Operator":"[\"VIEW\"]"}
     ]
   },
   {
@@ -127,11 +127,11 @@
     "portletId":"activity_WAR_BIBBOXDockerportlet",
     "portletPreferences":"",
     "permission":[
-      {"Guest":"VIEW"},
-      {"BIBBOX Admin":"VIEW"},
-      {"BIBBOX PI":"VIEW"},
-      {"BIBBOX Curator":"VIEW"},
-      {"BIBBOX Operator":"VIEW"}
+      {"Guest":"[\"VIEW\"]"},
+      {"BIBBOX Admin":"[\"VIEW\"]"},
+      {"BIBBOX PI":"[\"VIEW\"]"},
+      {"BIBBOX Curator":"[\"VIEW\"]"},
+      {"BIBBOX Operator":"[\"VIEW\"]"}
     ]
   },
   {
@@ -145,11 +145,11 @@
     "portletId":"activity_WAR_BIBBOXDockerportlet",
     "portletPreferences":"",
     "permission":[
-      {"Guest":"VIEW"},
-      {"BIBBOX Admin":"VIEW"},
-      {"BIBBOX PI":"VIEW"},
-      {"BIBBOX Curator":"VIEW"},
-      {"BIBBOX Operator":"VIEW"}
+      {"Guest":"[\"VIEW\"]"},
+      {"BIBBOX Admin":"[\"VIEW\"]"},
+      {"BIBBOX PI":"[\"VIEW\"]"},
+      {"BIBBOX Curator":"[\"VIEW\"]"},
+      {"BIBBOX Operator":"[\"VIEW\"]"}
     ]
   }
 ]

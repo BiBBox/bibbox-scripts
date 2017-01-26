@@ -133,10 +133,7 @@ class Sites:
         self.removePermission(plid, roleIds['Guest'], "VIEW")
         for permission in sitejson['permission']:
             for userrole in permission:
-                for actionId in permission[userrole].split(","):
-                    print("roleId: " + roleIds[userrole] + " userrole: " + userrole + " actionId: " + actionId)
-                    self.setPermission(plid, roleIds[userrole], actionId)
-
+                self.setPermission(plid, roleIds[userrole], permission[userrole])
 
     def setPermission(self, plid, roleId, actionId):
         api = jsonws.API()
@@ -146,15 +143,11 @@ class Sites:
             'groupId': self.groupID,
             'name': 'com.liferay.portal.kernel.model.Layout',
             'roleId': roleId,
-            'actionId': actionId,
-            'scope': 4}
+            'actionId': actionId
+        }
 
-        r = api.call("/resourcepermission/add-resource-permission", param)
-        print(param)
-        print("---- add-resource-permission")
-        print(r.text)
-        print("---- add-resource-permission")
-        self.logger.info("/resourcepermission/add-resource-permission")
+        r = api.call("/resourcepermission/set-individual-resource-permissions", param)
+        self.logger.info("/resourcepermission/set-individual-resource-permissions")
         self.logger.info(r.text)
 
     def removePermission(self, plid, roleId, actionId):
@@ -171,6 +164,3 @@ class Sites:
         r = api.call("/resourcepermission/remove-resource-permission", param)
         self.logger.info("/resourcepermission/remove-resource-permission")
         self.logger.info(r.text)
-        print("---- remove-resource-permission")
-        print(r.text)
-        print("---- remove-resource-permission")
