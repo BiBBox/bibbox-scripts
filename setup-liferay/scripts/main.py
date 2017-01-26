@@ -34,8 +34,8 @@ def setupLogger():
 def testServerStarted(counter):
     try:
         auth = ('test', 'test')
-        #url = "http://localhost:8080/api/jsonws/BIBBOXDocker-portlet.get-updated-application-store-list"
-        url = "http://dev2.bibbox.org/api/jsonws/BIBBOXDocker-portlet.get-updated-application-store-list"
+        url = "http://localhost:8080/api/jsonws/BIBBOXDocker-portlet.get-updated-application-store-list"
+        #url = "http://dev2.bibbox.org/api/jsonws/BIBBOXDocker-portlet.get-updated-application-store-list"
 
         headers = {
             'content-type': "application/json",
