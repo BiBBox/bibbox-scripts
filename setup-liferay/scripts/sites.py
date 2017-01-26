@@ -143,7 +143,7 @@ class Sites:
             'groupId': self.groupID,
             'name': 'com.liferay.portal.kernel.model.Layout',
             'roleId': roleId,
-            'actionId': actionId
+            'actionIds': actionId
         }
 
         r = api.call("/resourcepermission/set-individual-resource-permissions", param)
