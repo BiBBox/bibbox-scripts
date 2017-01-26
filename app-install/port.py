@@ -9,10 +9,10 @@ from pprint import pprint
 def creatVirtualHost(id, protocol, proxy, subdomain, instance, url, portnumber):
     print("Create VirtualHost for " + id)
     virtualhost = open('config/virtualhost_' + protocol.lower() + '.template', 'r').read()
-    virtualhost = virtualhost.replace("subdomain", subdomain.replace('§§INSTANCE', str(instance)).lower())
-    virtualhost = virtualhost.replace("url", str(url))
-    virtualhost = virtualhost.replace("ip", "127.0.0.1")
-    virtualhost = virtualhost.replace("port", str(portnumber))
+    virtualhost = virtualhost.replace("§§subdomain", subdomain.replace('§§INSTANCE', str(instance)).lower())
+    virtualhost = virtualhost.replace("§§url", str(url))
+    virtualhost = virtualhost.replace("§§ip", "127.0.0.1")
+    virtualhost = virtualhost.replace("§§port", str(portnumber))
     print(virtualhost)
     return virtualhost
 
