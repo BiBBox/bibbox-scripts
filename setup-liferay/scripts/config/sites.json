@@ -141,7 +141,7 @@
     "title":"Imprint",
     "description":"Imprint",
     "hidden":"true",
-    "typeSettings":"",
+    "typeSettings":"column-1=com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_lO9JfFZX6VhW,\nlayout-template-id=1_column",
     "portletId":"activity_WAR_BIBBOXDockerportlet",
     "portletPreferences":"",
     "permission":[

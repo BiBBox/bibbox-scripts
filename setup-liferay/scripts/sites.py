@@ -134,6 +134,7 @@ class Sites:
         for permission in sitejson['permission']:
             for userrole in permission:
                 for actionId in permission[userrole].split(","):
+                    print("roleId: " + roleIds[userrole] + " userrole: " + userrole + " actionId: " + actionId)
                     self.setPermission(plid, roleIds[userrole], actionId)
 
 
@@ -149,6 +150,10 @@ class Sites:
             'scope': 4}
 
         r = api.call("/resourcepermission/add-resource-permission", param)
+        print(param)
+        print("---- add-resource-permission")
+        print(r.text)
+        print("---- add-resource-permission")
         self.logger.info("/resourcepermission/add-resource-permission")
         self.logger.info(r.text)
 
@@ -166,3 +171,6 @@ class Sites:
         r = api.call("/resourcepermission/remove-resource-permission", param)
         self.logger.info("/resourcepermission/remove-resource-permission")
         self.logger.info(r.text)
+        print("---- remove-resource-permission")
+        print(r.text)
+        print("---- remove-resource-permission")
