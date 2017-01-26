@@ -82,7 +82,7 @@ def writeSetupDoneConfig():
 
 sys.stdout.write("Trying to connect to liferay server. \n")
 logger.info("Trying to connect to liferay server. \n")
-#testServerStarted(0)
+testServerStarted(0)
 
 sys.stdout.write("SETUP SITES \n")
 logger.info("SETUP SITES \n")
