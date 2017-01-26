@@ -5,7 +5,7 @@ import sys
 import getopt
 import shutil
 import json
-import getpass
+#import getpass
 
 from pprint import pprint
 
@@ -28,8 +28,8 @@ def copyFiles(applicationpath, source, instancepath, destination):
     except:
         print("Unexpected copy error:" + str(sys.exc_info()[1]))
 
-print("Env thinks the user is [%s]" % (os.getlogin()));
-print("Effective user is [%s]" % (getpass.getuser()));
+#print("Env thinks the user is [%s]" % (os.getlogin()));
+#print("Effective user is [%s]" % (getpass.getuser()));
 
 argv = sys.argv[1:]
 opts, args = getopt.getopt(argv,"a:i:",["applicationpath=","instancepath="])
