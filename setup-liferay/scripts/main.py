@@ -78,7 +78,7 @@ def writeSetupDoneConfig():
     target.write('setup="done"')
     target.close()
 
-#setupLogger()
+setupLogger()
 
 sys.stdout.write("Trying to connect to liferay server. \n")
 logger.info("Trying to connect to liferay server. \n")
