@@ -10,7 +10,7 @@
     "portletId":"bibboxjscontainer_WAR_BIBBOXDockerportlet",
     "portletPreferences":"<portlet-preferences><preference><name>firstparameter</name><value>instances</value></preference></portlet-preferences>",
     "permission":[
-      {"BIBBOX Admin":"[\"VIEW\",\"UPDATE\"]"},
+      {"BIBBOX Admin":"[\"VIEW\"]"},
       {"BIBBOX PI":"[\"VIEW\"]"},
       {"BIBBOX Curator":"[\"VIEW\"]"},
       {"BIBBOX Operator":"[\"VIEW\"]"}
