@@ -13,7 +13,7 @@ def createFolders(instancepath, folder):
     directory = instancepath + "/" + folder
     print("Creating folders: " + directory)
     if not os.path.exists(directory):
-        os.makedirs(directory)
+        os.makedirs(directory, 0o777)
 
 def copyFiles(applicationpath, source, instancepath, destination):
     try:
