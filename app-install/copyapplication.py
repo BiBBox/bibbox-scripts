@@ -13,7 +13,9 @@ def createFolders(instancepath, folder):
     directory = instancepath + "/" + folder
     print("Creating folders: " + directory)
     if not os.path.exists(directory):
-        os.makedirs(directory, mode=0o777)
+        os.makedirs(directory)
+
+    os.system("chmod -R 777 " +  instancepath + "/" + folder.split("/")[0])
 
 def copyFiles(applicationpath, source, instancepath, destination):
     try:
