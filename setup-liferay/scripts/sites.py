@@ -182,7 +182,7 @@ class Sites:
 
         if sitejson["portlettype"] == "JournalArticle":
             # CreateWebContent and update portletPreferences
-            sitejson["portletPreferences"] = self.journalService.createJournalArticle(site["articlename"])
+            sitejson["portletPreferences"] = self.journalService.createJournalArticle(sitejson["articlename"])
 
         # Configure Portlet
         param = {
