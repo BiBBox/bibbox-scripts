@@ -9,7 +9,7 @@ from pprint import pprint
 def creatVirtualHost(id, protocol, proxy, subdomain, instance, url, portnumber, instancepath):
     print("Create VirtualHost for " + id)
 
-    instanceTemplateFileName = instancepath + '/virtualhost_'' + protocol.lower() + '.template';
+    instanceTemplateFileName = instancepath + '/virtualhost_' + protocol.lower() + '.template';
 
     templateFileName = 'config/virtualhost_' + protocol.lower() + '.template';
 
