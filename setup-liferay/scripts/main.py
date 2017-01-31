@@ -15,7 +15,7 @@ from pprint import pprint
 import sites
 import roles
 import users
-import journal
+
 
 sys.stdout.write("SETUP SCRIPT FOR eB3KIT BIBBOX DEMO \n")
 logger = logging.getLogger("app-analyser")
@@ -94,10 +94,7 @@ logger.info("SETUP USERS \n")
 userService = users.Users (companyId = '20116')
 userService.initUsers()
 
-#journalService = journal.Journal('20116', '20147', logger)
-#journalService.initJournalArticles()
-
 api = jsonws.API()
 
-#writeSetupDoneConfig()
+writeSetupDoneConfig()
 

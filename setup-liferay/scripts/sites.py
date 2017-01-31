@@ -7,6 +7,7 @@ import requests
 import jsonws
 import roles
 import os
+import journal
 
 class Sites:
 
@@ -38,7 +39,12 @@ class Sites:
         #print("SITES AVAILABLE")
         for si in sites:
             self.allSites[si['friendlyURL']] = si['layoutId']
+            if si['friendlyURL'] == "/home":
+                self.welcometypeSettings = si['typeSettings']
+                self.welcomeplid = si['plid']
         #print(self.allSites)
+
+        self.journalService = journal.Journal(self.companyId, self.groupID, logger)
 
 
     def siteIDs (self):
@@ -63,6 +69,54 @@ class Sites:
             if site["friendlyURL"] not in siteNames:
                 print("Create " + site["friendlyURL"])
                 self.createSite(site)
+            if site["friendlyURL"] == "/home":
+                if self.welcometypeSettings == "column-1=com_liferay_hello_world_web_portlet_HelloWorldPortlet,\nlayout-template-id=1_column\n":
+                    self.updateWelcomePage(self.allSites["/home"], site)
+
+    def updateWelcomePage(self, layoutID, site):
+        api = jsonws.API()
+        print("Update Welcome Site.")
+        # Update Layout setings, place Portlet
+        param = {'groupId': self.groupID,
+                 'privateLayout': 'false',
+                 'layoutId': layoutID,
+                 'typeSettings': site["typeSettings"]}
+
+        r = api.call("/layout/update-layout", param)
+        self.logger.info("/layout/update-layout")
+        self.logger.info(r.text)
+
+        # CreateWebContent and update portletPreferences
+        portletPreferences = self.journalService.createJournalArticle(site["articlename"])
+
+        print("-------------")
+        print("portletPreferences")
+        print(portletPreferences)
+        print("-------------")
+
+        # Configure Portlet
+        param = {
+            'companyId': self.companyId,
+            'plid': self.welcomeplid,
+            'portletId': site["portletId"],
+            'preferences': portletPreferences}
+        print("self.companyId:" + self.companyId + " plid:" + self.welcomeplid + " portletId:" + site[
+            "portletId"] + " preferences:" + portletPreferences)
+        r = api.call("/BIBBOXDocker-portlet.set-portlet-configuration", param)
+
+        self.logger.info("/BIBBOXDocker-portlet.set-portlet-configuration")
+        self.logger.info(r.text)
+
+        # Setup Permissions
+        roleService = roles.Roles(companyId=self.companyId)
+        roleService.initRoles()
+        roleIds = roleService.rolesIds()
+
+        self.removePermission(self.welcomeplid, roleIds['Guest'], "VIEW")
+        for permission in site['permission']:
+            for userrole in permission:
+                self.setPermission(self.welcomeplid, roleIds[userrole], permission[userrole])
+        print("Update Welcome Site. ...done")
 
     def setTheme(self):
         api = jsonws.API()
@@ -117,6 +171,19 @@ class Sites:
         self.logger.info("/layout/update-layout")
         self.logger.info(r.text)
 
+        # Setup Permissions
+        self.removePermission(plid, roleIds['Guest'], "VIEW")
+        for permission in sitejson['permission']:
+            for userrole in permission:
+                self.setPermission(plid, roleIds[userrole], permission[userrole])
+
+        if sitejson["portlettype"] == "none":
+            return
+
+        if sitejson["portlettype"] == "JournalArticle":
+            # CreateWebContent and update portletPreferences
+            sitejson["portletPreferences"] = self.journalService.createJournalArticle(site["articlename"])
+
         # Configure Portlet
         param = {
                 'companyId': self.companyId,
@@ -129,11 +196,7 @@ class Sites:
         self.logger.info("/BIBBOXDocker-portlet.set-portlet-configuration")
         self.logger.info(r.text)
 
-        # Setup Permissions
-        self.removePermission(plid, roleIds['Guest'], "VIEW")
-        for permission in sitejson['permission']:
-            for userrole in permission:
-                self.setPermission(plid, roleIds[userrole], permission[userrole])
+
 
     def setPermission(self, plid, roleId, actionId):
         api = jsonws.API()
