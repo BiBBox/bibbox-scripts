@@ -6,9 +6,17 @@ import getopt
 import json
 from pprint import pprint
 
-def creatVirtualHost(id, protocol, proxy, subdomain, instance, url, portnumber):
+def creatVirtualHost(id, protocol, proxy, subdomain, instance, url, portnumber, instancepath):
     print("Create VirtualHost for " + id)
-    virtualhost = open('config/virtualhost_' + protocol.lower() + '.template', 'r').read()
+
+    instanceTemplateFileName = instancepath + '/' + protocol.lower() + '.template';
+
+    templateFileName = 'config/virtualhost_' + protocol.lower() + '.template';
+
+    if os.path.exists(instanceTemplateFileName):
+        templateFileName = instanceTemplateFileName
+
+    virtualhost = open(templateFileName, 'r').read()
     virtualhost = virtualhost.replace("§§subdomain", subdomain.replace('§§INSTANCE', str(instance)).lower())
     virtualhost = virtualhost.replace("§§url", str(url))
     virtualhost = virtualhost.replace("§§ip", "127.0.0.1")
@@ -43,7 +51,7 @@ instance = portsmapping['instance']
 virtualhost = ""
 
 for port in ports['mappings']:
-    virtualhost += creatVirtualHost(port['id'], port['protocol'], port['proxy'], port['url'], instance, baseurl, portsmapping[port['id']])
+    virtualhost += creatVirtualHost(port['id'], port['protocol'], port['proxy'], port['url'], instance, baseurl, portsmapping[port['id']], instancepath)
 
 target = open("/etc/apache2/sites-available/005-" + instance, 'w')
 target.write(virtualhost)
