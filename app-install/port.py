@@ -9,15 +9,12 @@ from pprint import pprint
 def creatVirtualHost(id, protocol, proxy, subdomain, instance, url, portnumber, instancepath):
     print("Create VirtualHost for " + id)
 
-    instanceTemplateFileName = instancepath + '/' + protocol.lower() + '.template';
-    print("Check for template at " + instanceTemplateFileName)
+    instanceTemplateFileName = instancepath + '/virtualhost_'' + protocol.lower() + '.template';
 
     templateFileName = 'config/virtualhost_' + protocol.lower() + '.template';
 
     if os.path.exists(instanceTemplateFileName):
         templateFileName = instanceTemplateFileName
-        print("special template found " + templateFileName)
-
 
     virtualhost = open(templateFileName, 'r').read()
     virtualhost = virtualhost.replace("§§subdomain", subdomain.replace('§§INSTANCE', str(instance)).lower())
