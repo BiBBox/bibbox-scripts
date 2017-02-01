@@ -10,14 +10,14 @@ from pprint import pprint
 def updatePorts(template, portmap):
     for portname in portmap.keys():
         if(portname.startswith("§§")):
-            template = template.replace(portname, portmap[portname])
+            template = template.replace(portname, str(portmap[portname]))
         elif(portname == "instance"):
-            template = template.replace("§§INSTANCE", portmap[portname])
+            template = template.replace("§§INSTANCE", str(portmap[portname]))
     return template
 
 def updateParameters(template, environment):
     for var in environment.keys():
-        template = template.replace("§§" + var, environment[var])
+        template = template.replace("§§" + var, str(environment[var]))
     return template
 
 def testConfigMising(template):
