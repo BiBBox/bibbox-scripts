@@ -66,7 +66,7 @@ for folder in applicationfiles_json["copyapplicationfiles"]:
     copyFiles(applicationpath, folder['source'], instancepath, folder['destination'])
   
 print("AFTER copyapplicationfiles ")
-os.system("ls -a "   
+os.system("ls -a ") 
     
 with open(instancepath + "/environment-parameters-settings.json") as data_file:
     environment = json.load(data_file)
