@@ -33,6 +33,7 @@ def copyFiles(applicationpath, source, instancepath, destination):
 #print("Env thinks the user is [%s]" % (os.getlogin()));
 #print("Effective user is [%s]" % (getpass.getuser()));
 
+
 argv = sys.argv[1:]
 opts, args = getopt.getopt(argv,"a:i:",["applicationpath=","instancepath="])
 for opt, arg in opts:
@@ -67,6 +68,7 @@ for folder in applicationfiles_json["copyapplicationfiles"]:
   
 print("AFTER copyapplicationfiles ")
 os.system("ls -a ") 
+print("END OF ls -a")
     
 with open(instancepath + "/environment-parameters-settings.json") as data_file:
     environment = json.load(data_file)
