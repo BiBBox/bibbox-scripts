@@ -56,9 +56,18 @@ with open(applicationpath + '/file_structure.json') as data_file:
 print("----------------")
 for folder in file_structure_json["makefolders"]:
     createFolders(instancepath, folder)
+    
 print("----------------")
 for folder in file_structure_json["copyfiles"]:
     copyFiles(applicationpath, folder['source'], instancepath, folder['destination'])
+
 print("----------------")
 for folder in applicationfiles_json["copyapplicationfiles"]:
     copyFiles(applicationpath, folder['source'], instancepath, folder['destination'])
+    
+with open(instancepath + "/environment-parameters-settings.json") as data_file:
+    environment = json.load(data_file)
+  
+for var in environment.keys():
+      print ("§§" + var, environment[var])
+    
