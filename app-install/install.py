@@ -77,7 +77,7 @@ for filename in file_structure_json["configs-to-adapt"]:
     replaced_data = updateParameters(origdata,      environment)
     replaced_data = updateParameters(replaced_data, config)
     
-    print("replaced = ", eplaced_data )
+    print("replaced = ", replaced_data )
     target = open(instancepath + '/'+ filename, 'w');
     target.write(replaceddata)
     target.close()
