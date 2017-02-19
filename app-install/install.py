@@ -73,12 +73,13 @@ for filename in file_structure_json["configs-to-adapt"]:
     source = open(instancepath + '/'+ filename, 'r');
     origdata = source.read()
     print("source = ", origdata)
+    
     source.close()
     replaced_data = updateParameters(origdata,      environment)
     replaced_data = updateParameters(replaced_data, config)
     
     print("replaced = ", replaced_data )
-    target = open(instancepath + '/'+ filename, 'w');
+    target = open(instancepath + '/'+ filename + ".new", 'w');
     target.write(replaceddata)
     target.close()
 
