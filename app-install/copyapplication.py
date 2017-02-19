@@ -66,11 +66,12 @@ print("----------------")
 for folder in applicationfiles_json["copyapplicationfiles"]:
     copyFiles(applicationpath, folder['source'], instancepath, folder['destination'])
   
-print("AFTER copyapplicationfiles ")
-os.system("ls -a ") 
-print("END OF ls -a")
 
 # ASK ROBERT WHY THIS IS NOT WORKING HERE
+
+#print("AFTER copyapplicationfiles ")
+#os.system("ls -a ") 
+#print("END OF ls -a")
     
 #with open(instancepath + "/environment-parameters-settings.json") as data_file:
 #    environment = json.load(data_file)

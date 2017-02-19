@@ -70,6 +70,8 @@ with open(applicationpath + '/file_structure.json') as data_file:
 
 for filename in file_structure_json["configs-to-adapt"]:
     print("REPLACE ENVIRONMENT IN", filename)
+    os.system("ls -a " + instancepath + '/'+ filename) 
+    os.system("more " + instancepath + '/'+ filename) 
     source = open(instancepath + '/'+ filename, 'r');
     origdata = source.read()
     print("source = ", origdata)
@@ -80,6 +82,6 @@ for filename in file_structure_json["configs-to-adapt"]:
     
     print("replaced = ", replaced_data )
     target = open(instancepath + '/'+ filename + ".new", 'w');
-    target.write(replaceddata)
+    target.write(replaced_data)
     target.close()
 
