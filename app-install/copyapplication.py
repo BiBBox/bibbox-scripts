@@ -69,10 +69,12 @@ for folder in applicationfiles_json["copyapplicationfiles"]:
 print("AFTER copyapplicationfiles ")
 os.system("ls -a ") 
 print("END OF ls -a")
+
+# ASK ROBERT WHY THIS IS NOT WORKING HERE
     
-with open(instancepath + "/environment-parameters-settings.json") as data_file:
-    environment = json.load(data_file)
+#with open(instancepath + "/environment-parameters-settings.json") as data_file:
+#    environment = json.load(data_file)
   
-for var in environment.keys():
-      print ("§§" + var, environment[var])
+#for var in environment.keys():
+#      print ("§§" + var, environment[var])
     

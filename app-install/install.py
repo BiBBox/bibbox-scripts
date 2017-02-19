@@ -60,3 +60,22 @@ testConfigMising(template)
 target = open(instancepath + "/docker-compose.yml", 'w')
 target.write(template)
 target.close()
+
+#
+# REPLACE ENVIRONMENT VARIABLES IN OTHER FILES
+#
+
+with open(applicationpath + '/file_structure.json') as data_file:
+    file_structure_json = json.load(data_file)
+
+for filename in file_structure_json["configs-to-adapt"]:
+    print("REPLACE ENVIRONMENT IN", filename)
+    source = open(instancepath + '/'+ filename, 'r');
+    origdata = source.read()
+    source.close()
+    replaced_data = updateParameters(origdata,      environment)
+    replaced_data = updateParameters(replaced_data, config)
+    target = open(instancepath + '/'+ filename, 'w');
+    target.write(replaceddata)
+    target.close()
+
