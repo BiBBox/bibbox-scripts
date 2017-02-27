@@ -72,18 +72,15 @@ if "configs-to-adapt" in file_structure_json:
 
     for filename in file_structure_json["configs-to-adapt"]:
         print("REPLACE ENVIRONMENT in ", filename)
-#    os.system("ls -a " + instancepath + '/'+ filename) 
-#    os.system("more " + instancepath + '/'+ filename) 
         source = open(instancepath + '/'+ filename, 'r');
         origdata = source.read()
-#    print("source = ", origdata)
         source.close()
  
         replaced_data = updateParameters(origdata,      environment)
         replaced_data = updateParameters(replaced_data, config)
     
 #    print("replaced = ", replaced_data )
-        target = open(instancepath + '/'+ filename + ".new", 'w');
+        target = open(instancepath + '/'+ filename, 'w');
         target.write(replaced_data)
         target.close()
 
