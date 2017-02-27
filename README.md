@@ -10,9 +10,9 @@ setup-liferay - Python scripts to setup and configure the liferay portal
 
 ## how to update on server
 
-cd /opt/bibbox/sys-bibbox-vmscripts
-sudo git reset --hard origin/master
-sudo git pull
+* cd /opt/bibbox/sys-bibbox-vmscripts
+* sudo git reset --hard origin/master
+* sudo git pull
 
 ## whats next
 
