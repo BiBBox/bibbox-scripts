@@ -3,7 +3,7 @@
 if ps aux | grep -v "grep" | grep "inotifywait -m /etc/apache2/sites-enabled -e delete -e create -e moved_to"
 then
     echo "Listener is still running"
-    PID='pgrep inotifywait'
+    PID=$(pgrep inotifywait)
     while kill $PID > /dev/null
         do
             # Wait for one second
@@ -28,7 +28,7 @@ fi
 if ps aux | grep -v "grep" | grep "inotifywait -m /etc/apache2/sites-enabled -e delete -e create -e moved_to"
 then
     echo "Listener is still running"
-    PID='pgrep inotifywait'
+    PID=$(pgrep inotifywait)
     while kill $PID > /dev/null
         do
             # Wait for one second
