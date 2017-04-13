@@ -6,7 +6,7 @@ class Setupchecker:
     def __init__(self, logger=""):
         self.logger = logger
         self.logger.info("Init Checks: \n")
-        self.checkVagrantError1()
+        #self.checkVagrantError1()
 
     # VagrantError1
     # Error on Ubuntu host system with vagrant 1.8.x
