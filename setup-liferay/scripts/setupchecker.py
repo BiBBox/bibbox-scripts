@@ -15,7 +15,7 @@ class Setupchecker:
     # with this liferay con not connect to the postgresql db
     def checkVagrantError1 (self):
         self.logger.info("Check Vagrant ERROR 1")
-        hosts = open("/etc/hosts", 'w').read()
+        hosts = open("/etc/hosts", 'w')
         if re.search('127\.0\.0\.1(.*)localhost', hosts.read()):
             self.logger.info(" - no error \n")
         else:
