@@ -15,6 +15,7 @@ from pprint import pprint
 import sites
 import roles
 import users
+import setupchecker
 
 
 sys.stdout.write("SETUP SCRIPT FOR eB3KIT BIBBOX DEMO \n")
@@ -79,6 +80,10 @@ def writeSetupDoneConfig():
     target.close()
 
 setupLogger()
+
+sys.stdout.write("Check Vagrant Setup Error. \n")
+logger.info("Check Vagrant Setup Error. \n")
+setupchecker.Setupchecker(logger)
 
 sys.stdout.write("Trying to connect to liferay server. \n")
 logger.info("Trying to connect to liferay server. \n")
