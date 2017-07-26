@@ -19,6 +19,22 @@
       {"BIBBOX Operator":"[\"VIEW\"]"}
     ]
   },{
+    "friendlyURL":"/domain",
+    "parentSite":"0",
+    "name":"Domain",
+    "title":"Domain",
+    "description":"Domain",
+    "hidden":"false",
+    "typeSettings":"column-1=bibboxjscontainer_WAR_BIBBOXDockerportlet,\nlayout-template-id=1_column",
+    "portlettype":"simple",
+    "portletId":"bibboxjscontainer_WAR_BIBBOXDockerportlet",
+    "portletPreferences":"<portlet-preferences><preference><name>firstparameter</name><value>domain</value></preference></portlet-preferences>",
+    "permission":[
+      {"BIBBOX Admin":"[\"VIEW\"]"},
+      {"BIBBOX PI":"[\"VIEW\"]"},
+      {"BIBBOX Curator":"[\"VIEW\"]"}
+    ]
+  },{
     "friendlyURL":"/instances",
     "parentSite":"0",
     "name":"Applications",
@@ -103,6 +119,22 @@
       {"BIBBOX PI":"[\"VIEW\"]"},
       {"BIBBOX Curator":"[\"VIEW\"]"},
       {"BIBBOX Operator":"[\"VIEW\"]"}
+    ]
+  },{
+    "friendlyURL":"/settings",
+    "parentSite":"0",
+    "name":"Settings",
+    "title":"Settings",
+    "description":"Settings",
+    "hidden":"false",
+    "typeSettings":"column-1=bibboxjscontainer_WAR_BIBBOXDockerportlet,\nlayout-template-id=1_column",
+    "portlettype":"simple",
+    "portletId":"bibboxjscontainer_WAR_BIBBOXDockerportlet",
+    "portletPreferences":"<portlet-preferences><preference><name>firstparameter</name><value>settings</value></preference></portlet-preferences>",
+    "permission":[
+      {"BIBBOX Admin":"[\"VIEW\"]"},
+      {"BIBBOX PI":"[\"VIEW\"]"},
+      {"BIBBOX Curator":"[\"VIEW\"]"}
     ]
   },
   {
