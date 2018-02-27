@@ -4,18 +4,6 @@
 
 source /etc/bibbox/bibbox.cfg
 
-updaterepository() {
-  if [[ "$GitHubUpdate" = "ON" ]]; then
-    #Config to disable this function
-    cd "$bibboxdir/$bibboxscriptfolder"
-    echo -n "  bibbox-scripts: "
-    git pull
-    cd "$bibboxdir/$bibboxapplicationstorefolder"
-    echo -n "  application-store: "
-    git pull
-  fi
-}
-
 updateexecute() {
   cd "$bibboxdir/$bibboxscriptfolder"
   chmod -R a+x "$bibboxdir/$bibboxscriptfolder"
@@ -25,7 +13,6 @@ updateexecute() {
 case "$1" in
   start)
     echo "Starting script BIBBOX "
-    updaterepository
     updateexecute
     source "$bibboxdir/$bibboxscriptfolder/initscripts/start.sh"
     ;;
@@ -36,7 +23,6 @@ case "$1" in
     ;;
   reload)
     echo "Reload script BIBBOX"
-    updaterepository
     updateexecute
     source "$bibboxdir/$bibboxscriptfolder/initscripts/reload.sh"
     ;;
