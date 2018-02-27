@@ -4,10 +4,16 @@
 
 source /etc/bibbox/bibbox.cfg
 
+updateexecute() {
+  cd "$bibboxdir/$bibboxscriptfolder"
+  chmod -R a+x "$bibboxdir/$bibboxscriptfolder"
+}
+
 # Carry out specific functions when asked to by the system
 case "$1" in
   start)
     echo "Starting script BIBBOX "
+    updateexecute
     source "$bibboxdir/$bibboxscriptfolder/initscripts/start.sh"
     ;;
   stop)
@@ -17,6 +23,7 @@ case "$1" in
     ;;
   reload)
     echo "Reload script BIBBOX"
+    updateexecute
     source "$bibboxdir/$bibboxscriptfolder/initscripts/reload.sh"
     ;;
   *)
