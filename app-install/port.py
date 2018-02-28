@@ -51,7 +51,7 @@ instance = portsmapping['instance']
 virtualhost = ""
 
 for port in ports['mappings']:
-    virtualhost += creatVirtualHost(port['id'], port['protocol'], port['proxy'], port['url'], instance, baseurl, portsmapping[port['id']], instancepath)
+    virtualhost += "\n"+creatVirtualHost(port['id'], port['protocol'], port['proxy'], port['url'], instance, baseurl, portsmapping[port['id']], instancepath)
 
 target = open("/etc/apache2/sites-available/005-" + instance, 'w')
 target.write(virtualhost)
