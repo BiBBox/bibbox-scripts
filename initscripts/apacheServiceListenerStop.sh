@@ -11,6 +11,7 @@ if ps aux | grep -v "grep" | grep "$MYWAIT"
 then
     echo "Listener is still running"
     PID=$(pgrep -f "${bibboxinotifywait}")
+    #while echo kill $PID
     while kill $PID > /dev/null
         do
             # Wait for one second
@@ -36,6 +37,7 @@ if ps aux | grep -v "grep" | grep "$MYWAIT"
 then
     echo "Listener is still running"
     PID=$(pgrep -f "${bibboxinotifywait}")
+    #while echo kill $PID
     while kill $PID > /dev/null
         do
             # Wait for one second
@@ -57,11 +59,3 @@ then
     done
     echo "Process has been killed after $count seconds."
 fi
-
-echo "Starting process '$MYWAIT'"
-$MYWAIT |
-    while read path action file; do
-        echo "Folder /etc/apache2/sites-enabled changed: '$action' file '$file'"
-        service apache2 reload
-    done
-echo "Process '$MYWAIT' has ended."
