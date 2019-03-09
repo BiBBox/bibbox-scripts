@@ -1,6 +1,8 @@
 #! /bin/bash
 
-if ps aux | grep -v "grep" | grep "inotifywait -m /etc/apache2/sites-enabled -e delete -e create -e moved_to"
+MYWAIT="inotifywait -m /etc/apache2/sites-enabled -e delete -e create -e moved_to"
+
+if ps aux | grep -v "grep" | grep "$MYWAIT"
 then
     echo "Listener is still running"
     PID=$(pgrep inotifywait)
@@ -25,7 +27,7 @@ then
     done
     echo "Process has been killed after $count seconds."    
 fi
-if ps aux | grep -v "grep" | grep "inotifywait -m /etc/apache2/sites-enabled -e delete -e create -e moved_to"
+if ps aux | grep -v "grep" | grep "$MYWAIT"
 then
     echo "Listener is still running"
     PID=$(pgrep inotifywait)
@@ -51,8 +53,10 @@ then
     echo "Process has been killed after $count seconds."    
 fi
 
-inotifywait -m /etc/apache2/sites-enabled -e delete -e create -e moved_to |
+$MYWAIT |
     while read path action file; do
         echo "Folder /etc/apache2/sites-enabled changed: '$action' file '$file'"
         service apache2 reload
     done
+
+echo "The wait is finally over."
