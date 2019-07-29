@@ -23,19 +23,13 @@ updateexecute() {
 # Carry out specific functions when asked to by the system
 case "$1" in
   start)
-    echo "Starting script BIBBOX "
-    updateexecute
-    source "$bibboxdir/$bibboxscriptfolder/initscripts/start.sh"
+
     ;;
   stop)
-    echo "Stopping script BIBBOX"
-    echo "Could do more yet"
-    source "$bibboxdir/$bibboxscriptfolder/initscripts/stop.sh"
+
     ;;
   reload)
-    echo "Reload script BIBBOX"
-    updateexecute
-    source "$bibboxdir/$bibboxscriptfolder/initscripts/reload.sh"
+
     ;;
   *)
     echo "Usage: /etc/init.d/blah {start|stop|reload}"
