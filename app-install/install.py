@@ -6,6 +6,7 @@ import sys
 import getopt
 import json
 from pprint import pprint
+import configparser
 
 def updatePorts(template, portmap):
     for portname in portmap.keys():
@@ -18,6 +19,14 @@ def updatePorts(template, portmap):
 def updateParameters(template, environment):
     for var in environment.keys():
         template = template.replace("§§" + var, str(environment[var]))
+    return template
+
+def updateUrl(template):
+    with open('/etc/bibbox/bibbox.cfg') as f:
+       file_content = '[dummy_section]\n' + f.read()
+       cp = configparser.RawConfigParser()
+       cp.read_string(file_content)
+       template = template.replace("§§URL", str(cp.get('dummy_section', 'bibboxbaseurl').replace('"', '')))
     return template
 
 def testConfigMising(template):
@@ -54,6 +63,8 @@ template = updateParameters(template, environment)
 with open(instancepath + "/config-parameters-settings.json") as data_file:
     config = json.load(data_file)
 template = updateParameters(template, config)
+
+updateUrl(template)
 
 testConfigMising(template)
 
